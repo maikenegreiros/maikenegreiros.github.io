@@ -1,42 +1,67 @@
 ---
-layout: default
 ---
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Maike Negreiros</title>
+        <meta name="description" content="Blog que aborda novidades na área de desenvolvimento web, JavaScript, CSS, HTML5 e muito mais.">
+        <meta name="theme-color" content="#021885">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Maike Negreiros">
+        <link rel="icon" href="{{'16x16.png'}}" />
+        <link rel="manifest" href="{{'manifest.json'}}">
+        <link async href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
 
-<!-- <div class="home">
+        <meta property="og:title" content="Maike Negreiros" />
+        <meta property="og:type" content="blog" />
+        <meta property="og:description" content="Blog que aborda novidades na área de desenvolvimento web, JavaScript, CSS, HTML5 e muito mais." />
+        <meta property="og:image" content="{{'images/maikenegreiros.jpg'}}" />
 
-  <h1 class="page-heading">Posts</h1>
+        <meta name="twitter:title" content="Maike Negreiros" />
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="https://maikenegreiros.me/">
+        <meta name="twitter:image" content="{{'images/maikenegreiros.jpg'}}" />
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <link rel="stylesheet" href="{{ '/css/home.css' }}">
+        <!-- <script type="text/javascript">
+                navigator.serviceWorker.register('/maike/sw.js', {scope:"/maike/"})
+                .then(reg => {
+                    console.log("Service Worker Registrado. Escopo: " + reg.scope);
+                })
+                .catch(error => {
+                    console.log("Erro ao tentar Registrar o Service Worker. Erro: " + error);
+                })
+            </script> -->
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111245086-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+            gtag('config', 'UA-111245086-1');
+        </script>
+    </head>
 
-</div> -->
-
-<div class="container">
-    <h1 class="title">
-        <center>Hello World</center>
-    </h1>
-    <img class="fadeInUp" src="images/maikenegreiros.jpg" alt="Imagem do Autor">
-
-    <div class="links">
-        <a class="postagens-button" href="artigos/">Postagens</a>
-    </div>
-
-    <div class="redes-sociais-container">
-        <a class="rede-social github" target="_blank" href="https://github.com/maikenegreiros">GitHub</a>
-        <a class="rede-social facebook" target="_blank" href="https://www.facebook.com/maikenegreiros">Facebook</a>
-        <a class="rede-social twitter" target="_blank" href="https://twitter.com/maikenegreiros">Twitter</a>
-        <a class="rede-social linkedin" target="_blank" href="https://www.linkedin.com/in/maike-negreiros-3818ab14a/">Linkedin</a>
-        <a class="rede-social mail" target="_blank" href="mailto:maike_jbe@hotmail.com">E-mail</a>
-    </div>
-</div>
+    <body>
+        <div class="container">
+            <h1 class="title">
+                <center>Hello World</center>
+            </h1>
+            <img class="fadeInUp" src="{{'images/maikenegreiros.jpg'}}" alt="Imagem do Autor">
+        
+            <div class="links">
+                <a class="postagens-button" href="artigos/">Postagens</a>
+            </div>
+        
+            <div class="redes-sociais-container">
+                <a class="rede-social github" target="_blank" href="https://github.com/maikenegreiros">GitHub</a>
+                <a class="rede-social facebook" target="_blank" href="https://www.facebook.com/maikenegreiros">Facebook</a>
+                <a class="rede-social twitter" target="_blank" href="https://twitter.com/maikenegreiros">Twitter</a>
+                <a class="rede-social linkedin" target="_blank" href="https://www.linkedin.com/in/maike-negreiros-3818ab14a/">Linkedin</a>
+                <a class="rede-social mail" target="_blank" href="mailto:maike_jbe@hotmail.com">E-mail</a>
+            </div>
+        </div>
+    </body>
+</html>
