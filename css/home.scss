@@ -1,0 +1,171 @@
+---
+---
+@charset "UTF-8";
+
+body {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-family: 'Bungee', cursive;
+    background-image: url(../images/seletores-css-p.jpg);
+    background-size: 100%;
+    margin: 0;
+}
+
+@media (min-width: 500px) {
+    body {
+        background-image: url(../images/seletores-css-m.jpg);
+    }
+}
+@media (min-width: 1000px) {
+    body {
+        background-image: url(../images/seletores-css-g.jpg);
+    }
+}
+@media (min-width: 1300px) {
+    body {
+        background-image: url(../images/seletores-css-gg.jpg);
+    }
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(67, 118, 255, 0.9);
+    justify-content: space-between;
+    padding: 50px 0px;
+}
+
+.title {
+    color: #021885;
+    margin: 0;
+}
+.redes-sociais-container {
+    display: flex;
+    justify-content: center;
+}
+.rede-social {
+    display: inline-block;
+    text-align: center;
+    font-size: 0;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    margin: 5px;
+    transition: transform 1s;
+    transform: scale(1);
+}
+.rede-social:hover {
+    transition: transform 1s;
+    transform: scale(1.5);
+}
+img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 5px solid #6285e3;
+    background-clip: border-box;
+    padding: 5px;
+    transition: transform 1s;
+    transform: scale(1);
+    width: 170px;
+}
+img:hover {
+    transition: transform 1s;
+    transform: scale(1.2);
+}
+
+@media (max-height:450px) and (orientation: landscape) {
+    .container {
+        bottom: auto;
+    }
+    .title {
+        margin-bottom: 15px;
+    }
+    .links {
+        margin: 40px 0;
+    }
+}
+
+.links a {
+    display: block;
+    border: 2px solid;
+    padding: 15px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #021885;
+    transition: transform 1s;
+    transform: scale(1);
+}
+
+.links a:hover {
+    transition: transform 1s;
+    transform: scale(1.1);
+}
+
+.janela {
+    background-color:  #00d;
+    color: white;
+    padding: 40px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto 20px;
+    max-width: 350px;
+    max-height: 200px;
+    box-sizing: border-box;
+}
+
+.rede-social.github {
+    background-image: url(../images/003-github.png);
+}
+
+.rede-social.twitter {
+    background-image: url(../images/006-twitter.png);
+}
+
+.rede-social.mail {
+    background-image: url(../images/002-mail.png);
+}
+
+.rede-social.linkedin {
+    background-image: url(../images/001-linkedin.png);
+}
+
+.rede-social.facebook {
+    background-image: url(../images/005-facebook.png);
+}
+
+.exit-button {
+    font-size: 0;
+    background-image: url(../images/close.png);
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+}
+
+@media (min-width:390px) {
+    .janela {
+        margin: auto;
+    }
+}
+
+@media (min-width:640px) {
+    .janela {
+        max-width: 600px;
+    }
+}
