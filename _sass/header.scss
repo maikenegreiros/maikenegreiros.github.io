@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.navbar {
+    background-color: #021885;
+}
+
+.navbar-brand {
+    background-image: url("../images/maike_fundopreto.png");
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat:  no-repeat;
+    font-size: 0;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.nav-link:hover {
+    color: rgba(255, 255, 255, 1) !important;
+}

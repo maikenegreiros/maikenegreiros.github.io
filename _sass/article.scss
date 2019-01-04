@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+.article-header {
+    margin-top: 90px;
+    padding:  0 20px;
+}
+
+@media (min-width: 600px) {
+    .article-header {
+        font-size: 1.5em;
+    }
+}
+
+.article-header h1 {
+    font-size: 3em;
+}
+
+.content {
+    margin: auto;
+}
+
+.date-container p {
+    font-size: .8em;
+    font-style: italic;
+    margin:  4px;
+}
+
+.date-container {
+    margin:  25px 0px;
+    border-bottom: 1px solid #b9b9b9;
+    padding-bottom: 15px;
+    color: #b9b9b9;
+}
+
+figure {
+    margin: 25px;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #021885;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1em;
+    color: #506EFF;
+}
+
+
+@media (min-width:450px) {
+    h1 {
+        font-size: 3em;
+    }
+}

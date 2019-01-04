@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.redes-sociais-container {
+    background-color: #dcdcdc;
+    border-top: 1px solid #021885;
+    padding: 80px 20px;
+}
+
+.redes-sociais-container {
+    display: flex;
+    justify-content: center;
+}
+.rede-social {
+    display: inline-block;
+    text-align: center;
+    font-size: 0;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    margin: 5px;
+    transition: transform 1s;
+    transform: scale(1);
+}
+.rede-social:hover {
+    transition: transform 1s;
+    transform: scale(1.5);
+}
+.rede-social.github {
+    background-image: url('../images/003-github.png');
+}
+
+.rede-social.twitter {
+    background-image: url('../images/006-twitter.png');
+}
+
+.rede-social.mail {
+    background-image: url('../images/002-mail.png');
+}
+
+.rede-social.linkedin {
+    background-image: url('../images/001-linkedin.png');
+}
+
+.rede-social.facebook {
+    background-image: url('../images/005-facebook.png');
+}

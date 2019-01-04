@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.image-viewer-container {
+    display: flex;
+    position: fixed;
+    top: 66px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 50px;
+    background-color: rgba(67, 118, 255, 0.9);
+}
+
+.image-viewer {
+    margin: auto;
+}
+
+.content img {
+    cursor: pointer;
+}
+
+.bt-viewer {
+    position:  absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 0;
+    border: none;
+    padding: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.bt-viewer.bt-previous {
+    left:  20px;
+    bottom: 49%;
+    background-image: url('../images/arrow.png');
+    transform: rotate(180deg);
+}
+
+.bt-viewer.bt-next {
+    right: 20px;
+    bottom: 49%;
+    background-image: url('../images/arrow.png');
+}
+
+.bt-viewer.bt-close {
+    top: 45px;
+    right: 20px;
+    background-image: url(../images/close.png);
+}
+
+.oculto {
+    display: none;
+}
