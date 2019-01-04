@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#021885">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Maike Negreiros">
+    <link rel="icon" href="16x16.png" />
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/posts-collection.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+
+
+
+    <!-- <script type="text/javascript">
+            navigator.serviceWorker.register('/maike/sw.js', {scope:"/maike/"})
+            .then(reg => {
+                console.log("Service Worker Registrado. Escopo: " + reg.scope);
+            })
+            .catch(error => {
+                console.log("Erro ao tentar Registrar o Service Worker. Erro: " + error);
+            })
+        </script> -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111245086-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111245086-1');
+    </script>
+</head>
+
+<body>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '143674889651987',
+                cookie: true,
+                xfbml: true,
+                version: 'v2.11'
+            });
+
+            let algo = FB.AppEvents.logPageView();
+            console.log(algo)
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark ">
+  <a href="/" class="navbar-brand">Maike Negreiros</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="/artigos/">Postagens</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="#">Contato</a></li> -->
+      </ul>
+  </div>
+</nav>
+
+
+    <h1>Latest Posts</h1>
+
+<div class="content">
+    <h1 class="title-page mb-4">Postagens</h1>
+
+    
+    <article class="posts-card card">
+        <a class="post card-body card-link" href="/2018/01/13/indexed-db-parte-2.html">
+            <div class="card-image"></div>
+            <div class="card-informations">
+                <h2 class="card-title">IndexedDB – seu banco de dados no client-side (Parte 2)</h2>
+                <!-- <p class="card-text"><p>Esse artigo é uma continuação de um artigo anterior, recomendo que leiam primeiro o <a href="/2017/12/20/indexed-db-parte-1.html">IndexedDB – parte 1</a>. No artigo passado falei como criar e deletar as <em>objectStores</em>, e vimos que essas operações eram feitas dentro da callback atrelada ao evento <em>onupgradeneeded</em>.</p>
+
+</p> -->
+                <p class="date">13/01/2018</p>
+            </div>
+        </a>
+    </article>
+    
+    <article class="posts-card card">
+        <a class="post card-body card-link" href="/2017/12/20/indexed-db-parte-1.html">
+            <div class="card-image"></div>
+            <div class="card-informations">
+                <h2 class="card-title">IndexedDB – seu banco de dados no client-side (Parte 1)</h2>
+                <!-- <p class="card-text"><p>Há pouco tempo atrás, quando se falava em armazenamento de dados no lado do cliente, a única coisa que nos vinha a cabeça eram os cookies. O HTML 5 nos trouxe mais algumas possibilidades para desempenhar esse papel, das quais podemos citar <em>Web Storage</em> e <em>IndexedDB</em>. Existe também o <em>Web SQL</em>, porém, esta tecnologia foi descontinuada, cedendo espaço para o IndexedDB, que é o assunto desse artigo.</p>
+
+</p> -->
+                <p class="date">20/12/2017</p>
+            </div>
+        </a>
+    </article>
+    
+</div>
+
+
+    <footer class="redes-sociais-container">
+    <p><a class="rede-social github" target="_blank" href="https://github.com/maikenegreiros">GitHub</a></p>
+    <p><a class="rede-social facebook" target="_blank" href="https://www.facebook.com/maikenegreiros">Facebook</a></p>
+    <p><a class="rede-social twitter" target="_blank" href="https://twitter.com/maikenegreiros">Twitter</a></p>
+    <p><a class="rede-social linkedin" target="_blank" href="https://www.linkedin.com/in/maike-negreiros-3818ab14a/">Linkedin</a></p>
+    <p><a class="rede-social mail" target="_blank" href="mailto:maike_jbe@hotmail.com">E-mail</a></p>
+</footer>
+
+</body>
+
+</html>

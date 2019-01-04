@@ -1,0 +1,295 @@
+<html>
+    <head>
+        <title>IndexedDB – seu banco de dados no client-side (Parte 2)</title>
+        <meta name="description" content="Aprenda os primeiros passos para utilizar indexedDB, armazene dados no navegador">
+        <meta name="keywords" content="javascript, html5, ecmascript, es6, es2015, indexeddb, banco de dados">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/post.css">
+
+        <meta property="og:title" content="IndexedDB – seu banco de dados no client-side (Parte 2)" />
+        <meta property="og:type" content="blog" />
+        <meta property="og:description" content="Aprenda os primeiros passos para utilizar indexedDB, armazene dados no navegador" />
+        <meta property="og:image" content="images/posts/2017-12-28-indexeddb-logo.jpg" />
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="/2018/01/13/indexed-db-parte-2.html">
+        <meta name="twitter:title" content="IndexedDB – seu banco de dados no client-side (Parte 2)" />
+        <meta name="twitter:image" content="images/posts/2017-12-28-indexeddb-logo.jpg" />
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    </head>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark ">
+  <a href="/" class="navbar-brand">Maike Negreiros</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="/artigos/">Postagens</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="#">Contato</a></li> -->
+      </ul>
+  </div>
+</nav>
+
+    <body>
+        <header class="article-header">
+            <h1>IndexedDB – seu banco de dados no client-side (Parte 2)</h1>
+        
+            <div class="date-container">
+                <p>Postado em: <span class="date">13/01/2018</span></p>
+                <p>Atualizado em: <span class="date">13/01/2018</span></p>
+            </div>
+        </header>
+        
+        <article class="content">
+            <figure>
+                <img data-large-image="images/posts/2017-12-28-indexeddb-logo.jpg" src="images/posts/2017-12-28-indexeddb-logo.jpg" alt="Logo HTML5 com o nome IndexedDB em seguida">
+            </figure>
+            <p>Esse artigo é uma continuação de um artigo anterior, recomendo que leiam primeiro o <a href="/2017/12/20/indexed-db-parte-1.html">IndexedDB – parte 1</a>. No artigo passado falei como criar e deletar as <em>objectStores</em>, e vimos que essas operações eram feitas dentro da callback atrelada ao evento <em>onupgradeneeded</em>.</p>
+
+<h2 id="onsuccess">onsuccess</h2>
+
+<p>Como prometido, nesse artigo irei abordar as operações de CRUD (create, read, update, delete). Essas operações são feitas dentro da callback do evento <strong>onsuccess</strong>.</p>
+
+<h3 id="armazenando-um-objeto">Armazenando um objeto</h3>
+
+<p>Com as objectStores criadas, agora precisamos adicionar dados à elas, essa operação será executada dentro da callback atrelada ao evento <em>onsuccess</em>. Vejamos o código:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">openRequest</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">indexedDB</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"MyDatabase"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">DB</span><span class="p">;</span>
+<span class="nx">openRequest</span><span class="p">.</span><span class="nx">onupgradeneeded</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">DB</span> <span class="o">=</span> <span class="nx">openRequest</span><span class="p">.</span><span class="nx">result</span>
+    <span class="nx">DB</span><span class="p">.</span><span class="nx">createObjectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">,</span> <span class="p">{</span><span class="na">autoIncrement</span><span class="p">:</span> <span class="kc">true</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/code&gt;</span><span class="se">)</span><span class="sr">&lt;/</span><span class="nx">li</span><span class="o">&gt;</span>
+<span class="p">}</span>
+<span class="c1">//O código escrito até aqui é fruto do artigo anterior, uma única alteração foi feita, a variável  DB teve sua declaração realizada fora do escopo da callback, pois essa variável terá uma atribuição dentro da callback atrelada a onsuccess também.</span>
+
+<span class="kd">let</span> <span class="nx">pessoa1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">nome</span><span class="p">:</span> <span class="s2">"Fulano da Silva"</span><span class="p">,</span>
+    <span class="na">data_nascimento</span><span class="p">:</span> <span class="s2">"05/02/1980"</span><span class="p">,</span>
+    <span class="na">cpf</span><span class="p">:</span> <span class="s2">"333.333.333-33"</span>
+<span class="p">}</span>
+<span class="nx">openRequest</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">DB</span> <span class="o">=</span> <span class="nx">openRequest</span><span class="p">.</span><span class="nx">result</span>
+    <span class="nx">DB</span><span class="p">.</span><span class="nx">transaction</span><span class="p">([</span><span class="s2">"pessoas"</span><span class="p">],</span> <span class="s2">"readwrite"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">objectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">pessoa1</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Vamos entender o código acima. Na linha 15 é criada uma transação através do método <em>transaction</em> do DB, note que esse método recebe dois parâmetros, o primeiro é um array com as objectStores que iremos trabalhar na transação, no nosso caso iremos trabalhar apenas com uma, então essa linha poderia ser escrita assim também:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="nx">DB</span><span class="p">.</span><span class="nx">transaction</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">,</span> <span class="s2">"readwrite"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>O segundo parâmetro é o tipo de transação que iremos executar, como estamos escrevendo no banco, o tipo deve ser <strong>readwrite</strong>. Existem outros dois tipos de transações, a <strong>readonly</strong> e <strong>versionchange</strong>.
+Na linha seguinte, estamos especificando em qual objectStore iremos operar. Parece um comando desnecessário, visto que já determinamos isso no primeiro parâmetro do método <em>transaction</em>, mas lembre-se, que poderíamos ter um array de objectStores na transação.
+Finalmente, na linha 17, armazenamos o objeto <strong>pessoa1</strong> no banco através do método <em>add</em> da objectStore. Se abrirmos as ferramentas do desenvolvedor, na aba Application poderemos comprovar isso, mas antes é preciso dar um refresh no banco de dados, aliás, sempre que adicionarmos ou modificarmos alguma coisa no banco é necessário atualizar o mesmo para que possamos ver as alterações:</p>
+
+<p><img src="images/2018-01-11-indexeddb01.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+
+<p><img src="images/2018-01-11-indexeddb02.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+
+<p>O método <em>add</em> é assíncrono e possui dois event handlers, o <em>onsuccess</em> e o <em>onerror</em>, então podemos adicionar as seguintes linhas para sabermos se a operação foi executada com sucesso ou se algum erro ocorreu.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Código anterior omitido</span>
+<span class="nx">openRequest</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">DB</span> <span class="o">=</span> <span class="nx">openRequest</span><span class="p">.</span><span class="nx">result</span>
+    <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">DB</span><span class="p">.</span><span class="nx">transaction</span><span class="p">([</span><span class="s2">"pessoas"</span><span class="p">],</span> <span class="s2">"readwrite"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">objectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">pessoa1</span><span class="p">)</span>
+    <span class="c1">//Novidade aqui</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Cadastro realizado com sucesso"</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Ao executar o código acima, a mensagem da linha 9 será logada no console:</p>
+
+<p><img src="images/2018-01-11-indexeddb04.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+
+<h3 id="recuperando-um-objeto">Recuperando um objeto</h3>
+<p>Aqui não muda muita coisa, assim como para armazenar um dado, devemos abrir uma transação para recuperarmos um dado do banco, o mesmo ocorre para as demais operações. Vejamos o código:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">openRequest</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">DB</span> <span class="o">=</span> <span class="nx">openRequest</span><span class="p">.</span><span class="nx">result</span>
+    <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">DB</span><span class="p">.</span><span class="nx">transaction</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">,</span> <span class="s2">"readonly"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">objectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">)</span>
+    <span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Veja que na linha 3, o segundo parâmetro do método <em>transaction</em> mudou. Já que não escreveremos ou apagaremos nada no banco, não há necessidade de usarmos o modo readwrite.
+Quando o segundo parâmetro não é fornecido, o modo readonly é adotado como padrão, então a linha 3 poderia ser escrita assim também:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">DB</span><span class="p">.</span><span class="nx">transaction</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Na linha 4 não temos nenhuma novidade. Na linha 5 chamamos o método get, passando o valor da chave onde está armazenado o objeto que queremos recuperar. Assim como o método add, o método <em>get</em> é uma requisição assíncrona e temos os eventos <em>onsuccess</em> e <em>onerror</em>. É no onsuccess que teremos acesso ao objeto recuperado, como podemos ver na linha 7. Na imagem abaixo podemos ver o log da linha 7.</p>
+
+<p><img src="images/2018-01-11-indexeddb03.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+
+<h3 id="recuperando-todos-os-registros">Recuperando todos os registros</h3>
+<p>Aqui temos duas opções. Podemos usar o método <em>getAll</em>, onde o resultado é um array com os registros da objectStore, ou podemos lançar mão do método <em>openCursor</em>, que nos fornece um cursor capaz de iterar em cada valor armazenado na objectStore.
+Antes de irmos aos exemplos, irei inserir mais dois objetos utilizando o método <em>add</em>, pois no momento possuímos apenas um armazenado. Serão eles:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="nl">nome</span><span class="p">:</span> <span class="s2">"Virgulino Ferreira"</span><span class="p">,</span>
+    <span class="nx">data_nascimento</span><span class="p">:</span> <span class="s2">"13/06/1950"</span><span class="p">,</span>
+    <span class="nx">cpf</span><span class="p">:</span> <span class="s2">"555.444.333-88"</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="na">nome</span><span class="p">:</span> <span class="s2">"João de Deus"</span><span class="p">,</span>
+    <span class="na">data_nascimento</span><span class="p">:</span> <span class="s2">"15/11/1970"</span><span class="p">,</span>
+    <span class="na">cpf</span><span class="p">:</span> <span class="s2">"999.555.777-88"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Exemplo utilizando <strong>getAll</strong>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">openRequest</span><span class="p">.</span><span class="nx">onsuccess</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">DB</span> <span class="o">=</span> <span class="nx">openRequest</span><span class="p">.</span><span class="nx">result</span>
+    <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">DB</span><span class="p">.</span><span class="nx">transaction</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">,</span> <span class="s2">"readonly"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">objectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">getAll</span><span class="p">()</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onerror</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Utilizar o getAll é bastante simples, basta abrir uma transação, dizer qual a objectStore que será utilizada e chamar o método getAll, que não necessita de nenhum parâmetro. A linha 7 irá fazer o log de um array com todos os registros contidos no banco.</p>
+
+<p><img src="images/2018-01-11-indexeddb05.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+
+<p>Agora, vamos ver um exemplo utilizando <strong>openCursor</strong>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">openRequest</span><span class="p">.</span><span class="nx">onsuccess</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">DB</span> <span class="o">=</span> <span class="nx">openRequest</span><span class="p">.</span><span class="nx">result</span>
+    <span class="kd">let</span> <span class="nx">pessoas</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">DB</span><span class="p">.</span><span class="nx">transaction</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">,</span> <span class="s2">"readonly"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">objectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">openCursor</span><span class="p">()</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">result</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">cursor</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">pessoas</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">cursor</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+            <span class="nx">cursor</span><span class="p">.</span><span class="k">continue</span><span class="p">()</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pessoas</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onerror</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Na linha 3, eu criei um array <strong>pessoas</strong> que será populado posteriormente com os objetos armazenados na objectStore pessoas. Outra novidade aqui é o método <em>openCursor</em>, na linha 6. O resultado dessa requisição é um objeto <strong>IDBCursorWithValue</strong> que tem a capacidade de iterar sobre os objetos da objectStore. Na linha 8 armazenamos esse iterador na variável cursor e em seguida verificamos se ele existe, se ele existir, as linhas 10 e 11 serão executadas. Na linha 10 fazemos um push no array pessoas criado anteriormente, adicionando o objeto atual da objectStore no cursor. Temos acesso à esse objeto através da propriedade <em>value</em> do cursor. Na linha seguinte, iteramos o cursor através do método <em>continue</em>, fazendo com que o bloco (iniciado na linha 7) seja reexecutado. Ao chegar no if novamente é verificado se o cursor possui algum valor, se sim, tudo irá se repetir. Quando a condição não for mais verdadeira, ou seja, quando não houver mais dados para iterar, o bloco else será executado, logando o array já populado com os objetos da objectStore de pessoas.</p>
+
+<p>O cursor pode fazer várias outras coisas, mas ficaremos por aqui e daremos continuidade aos outros métodos.</p>
+
+<h3 id="editando-um-objeto">Editando um objeto</h3>
+<p>Vamos supor que o valor da propriedade <em>nome</em> do objeto pessoa1 que armazenamos anteriormente estivesse errado e quiséssemos atualizar o objeto armazenado no banco com o nome correto, então faremos uma nova atribuição ao objeto pessoa1, alterando a propriedade nome. Logo em seguida faremos a atualização do objeto no banco:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pessoa1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//Alterando o valor da propriedade nome</span>
+    <span class="na">nome</span><span class="p">:</span> <span class="s2">"Ciclano Sousa"</span><span class="p">,</span>
+    <span class="na">data_nascimento</span><span class="p">:</span> <span class="s2">"05/02/1980"</span><span class="p">,</span>
+    <span class="na">cpf</span><span class="p">:</span> <span class="s2">"333.333.333-33"</span>
+<span class="p">}</span>
+<span class="nx">openRequest</span><span class="p">.</span><span class="nx">onsuccess</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">DB</span> <span class="o">=</span> <span class="nx">openRequest</span><span class="p">.</span><span class="nx">result</span>
+    <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">DB</span><span class="p">.</span><span class="nx">transaction</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">,</span> <span class="s2">"readwrite"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">objectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="nx">pessoa1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Registro atualizado com sucesso"</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onerror</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note que nessa operação, a nossa transação será do tipo readwrite,  pois estaremos alterando um registro do banco de dados. Na linha 10, utilizamos o método <em>put</em> e passamos dois parâmetros para ele, o primeiro é o objeto que será armazenado (nosso objeto pessoa1 com o nome corrigido), o segundo parâmetro é a chave onde está armazenado o objeto que queremos atualizar. Assim como nas outras operações já realizadas, temos os eventos <em>onsuccess</em> e <em>onerror</em> para a requisição de atualização.</p>
+
+<p>Se executarmos o código acima e sem seguida dermos um refresh no banco, veremos que o objeto foi realmente atualizado:</p>
+
+<p><img src="images/2018-01-11-indexeddb06.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+
+<h3 id="deletando-um-objeto">Deletando um objeto</h3>
+<p>Para apagarmos um objeto em uma objectStore é a mesma coisa: abrimos uma transação (do tipo readwrite), apontamos a objectStore que iremos operar e por fim fazemos uma requisição para deletar o objeto.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">openRequest</span><span class="p">.</span><span class="nx">onsuccess</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">DB</span> <span class="o">=</span> <span class="nx">openRequest</span><span class="p">.</span><span class="nx">result</span>
+    <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">DB</span><span class="p">.</span><span class="nx">transaction</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">,</span> <span class="s2">"readwrite"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">objectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">)</span>
+        <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onsuccess</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Registro deletado com sucesso"</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">onerror</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Se dermos um refresh no banco, veremos que o objeto armazenado na chave 1 não estará mais lá:</p>
+
+<p><img src="images/2018-01-11-indexeddb07.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+
+<p>Pensei em deixar o evento <em>onerror</em> da <strong>requisição de abertura do banco</strong> para um próximo post, mas acabaria sendo um post bem pequeno, pois sobre isso não há tanto para se falar. Serei bem sucinto nas próximas linhas, pois o artigo já ficou mais extenso do que eu gostaria.</p>
+
+<h2>onerror</h2>
+<p>Caso a requisição de abertura falhe, o evento que será disparado será o <em>onerror</em>. A API indexedDB foi feita tentando evitar que erros aconteçam, será difícil acontecer erros. Um erro que pode acontecer durante um requisição de abertura é se o programador fornecer ao método open um número de versão menor do que o atual. No momento, meu banco está na versão 5, então passarei o valor 4:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">openRequest</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">indexedDB</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"MyDatabase"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">DB</span><span class="p">;</span>
+<span class="nx">openRequest</span><span class="p">.</span><span class="nx">onupgradeneeded</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">//Código omitido</span>
+<span class="p">}</span>
+<span class="nx">openRequest</span><span class="p">.</span><span class="nx">onsuccess</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">//Código omitido</span>
+<span class="p">}</span>
+<span class="nx">openRequest</span><span class="p">.</span><span class="nx">onerror</span><span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">openRequest</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>O log da linha 10 será executado nos retonando a seguinte exception:</p>
+
+<p><img src="images/2018-01-11-indexeddb08.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+
+        </article>
+        <footer class="redes-sociais-container">
+    <p><a class="rede-social github" target="_blank" href="https://github.com/maikenegreiros">GitHub</a></p>
+    <p><a class="rede-social facebook" target="_blank" href="https://www.facebook.com/maikenegreiros">Facebook</a></p>
+    <p><a class="rede-social twitter" target="_blank" href="https://twitter.com/maikenegreiros">Twitter</a></p>
+    <p><a class="rede-social linkedin" target="_blank" href="https://www.linkedin.com/in/maike-negreiros-3818ab14a/">Linkedin</a></p>
+    <p><a class="rede-social mail" target="_blank" href="mailto:maike_jbe@hotmail.com">E-mail</a></p>
+</footer>
+
+    </body>
+</html>

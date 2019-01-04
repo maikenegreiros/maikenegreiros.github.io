@@ -1,0 +1,26 @@
+{
+  "short_name": "Maike Negreiros",
+  "name": "Maike Negreiros",
+  "icons": [
+    {
+      "src": "images/maike_fundopreto.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "images/maike_fundopreto.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "images/maike_fundopreto.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "scope": "/",
+  "start_url": "?pwa=true",
+  "theme_color": "#021885",
+  "background_color": "#000",
+  "display": "standalone"
+}
