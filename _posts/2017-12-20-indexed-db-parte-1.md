@@ -3,7 +3,7 @@ layout: post
 title: IndexedDB – seu banco de dados no client-side (Parte 1)
 description: Aprenda os primeiros passos para utilizar indexedDB, armazene dados no navegador
 keywords: javascript, html5, ecmascript, es6, es2015, indexeddb, banco de dados
-image: images/posts/2017-12-28-indexeddb-logo.jpg
+image: /images/2017-12-28-indexeddb-logo.jpg
 alt: Logo HTML5 com o nome IndexedDB em seguida
 url: "https://maikenegreiros.me/artigos/indexeddb-parte1"
 updateDate: "20/12/2017"
@@ -23,7 +23,7 @@ let openRequest = window.indexedDB.open("MyDatabase", 1)
 
 Se abrirmos, utilizando o Chrome, as ferramentas do desenvolvedor na aba Applications, poderemos ver clicando em IndexedDB no menu lateral, que foi criado um Banco "MyDatabase".
 
-![Ferramentas do desenvovedor - Chrome](images/2017-12-20-indexeddb01.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2017-12-20-indexeddb01.jpg)
 
 A API do IndexedDB é assíncrona, portanto temos que trabalhar com callbacks, ou melhor ainda, podemos trabalhar com Promises, porém, optarei por usar a primeira opção, as Promises serão assuntos de artigos posteriores. O método *open* nos retorna um objeto *IDBOpenDBRequest*, ou seja, uma requisição de abertura ao banco de dados. Sempre que executamos um pedido de abertura, temos que lidar com três eventos: *onupgradeneeded* , *onsuccess*, *onerror*.
 
@@ -44,11 +44,11 @@ openRequest.onerror = () => {
 
 Ao executarmos o código pela primeira vez, podemos ver no console, que os eventos *onupgradedneeded* e *onsuccess* foram disparados:
 
-![Ferramentas do desenvovedor - Chrome](images/2017-12-20-indexeddb02.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2017-12-20-indexeddb02.jpg)
 
 Se atualizarmos a página e executarmos esse mesmo código, veremos que apenas o evento onsuccess foi disparado. Explicarei porque isso acontece logo a seguir.
 
-![Ferramentas do desenvovedor - Chrome](images/2017-12-20-indexeddb03.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2017-12-20-indexeddb03.jpg)
 
 ## onupgradeneeded
 
@@ -91,7 +91,7 @@ openRequest.onupgradeneeded = () => {
 No código acima estamos criando uma objectStore "pessoas", onde serão armazenados nossos objetos JavaScript. Para o keyPath passamos o valor  "cpf", portanto temos que garantir que os objetos que iremos armazenar na objectStore possuam o atributo "cpf". Dessa forma, quando quisermos obter um objeto armazenado no banco de dados, obtemos o mesmo pelo valor do seu atributo "cpf". O mesmo vale para quando quisermos, deletar ou atualizar um objeto.
 Vejamos como fica o nosso banco de dados:
 
-![Ferramentas do desenvovedor - Chrome](images/2017-12-20-indexeddb04.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2017-12-20-indexeddb04.jpg)
 
 Agora vou mostrar como faríamos o mesmo utilizando um *keyGenerator*.
 
@@ -104,6 +104,6 @@ openRequest.onupgradeneeded = () => {
 
 O que mudou desse código pro anterior, foi o segundo parâmetro passado para o método createObjectStore, dessa forma nosso primeiro objeto será armazenado na chave 1, o segundo na chave 2 e assim por diante. Veja só como ficaria o nosso banco de dados:
 
-![Ferramentas do desenvovedor - Chrome](images/2017-12-20-indexeddb05.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2017-12-20-indexeddb05.jpg)
 
 Neste artigo, para não estender muito, foquei apenas na parte inicial do IndexedDB, no próximo, trabalharemos dentro da callback do evento onsuccess e aprenderemos como realizar as operções de CRUD, ou seja, veremos como inserir dados, bem como atualizar, obter e deletar os dados inseridos.

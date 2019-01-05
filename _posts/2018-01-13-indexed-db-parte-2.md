@@ -3,7 +3,7 @@ layout: post
 title: IndexedDB – seu banco de dados no client-side (Parte 2)
 description: Aprenda os primeiros passos para utilizar indexedDB, armazene dados no navegador
 keywords: javascript, html5, ecmascript, es6, es2015, indexeddb, banco de dados
-image: images/posts/2017-12-28-indexeddb-logo.jpg
+image: /images/2017-12-28-indexeddb-logo.jpg
 alt: Logo HTML5 com o nome IndexedDB em seguida
 url: "https://maikenegreiros.me/artigos/indexeddb-parte2"
 updateDate: "13/01/2018"
@@ -51,9 +51,9 @@ O segundo parâmetro é o tipo de transação que iremos executar, como estamos 
 Na linha seguinte, estamos especificando em qual objectStore iremos operar. Parece um comando desnecessário, visto que já determinamos isso no primeiro parâmetro do método *transaction*, mas lembre-se, que poderíamos ter um array de objectStores na transação.
 Finalmente, na linha 17, armazenamos o objeto **pessoa1** no banco através do método *add* da objectStore. Se abrirmos as ferramentas do desenvolvedor, na aba Application poderemos comprovar isso, mas antes é preciso dar um refresh no banco de dados, aliás, sempre que adicionarmos ou modificarmos alguma coisa no banco é necessário atualizar o mesmo para que possamos ver as alterações:
 
-![Ferramentas do desenvovedor - Chrome](images/2018-01-11-indexeddb01.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2018-01-11-indexeddb01.jpg)
 
-![Ferramentas do desenvovedor - Chrome](images/2018-01-11-indexeddb02.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2018-01-11-indexeddb02.jpg)
 
 O método *add* é assíncrono e possui dois event handlers, o *onsuccess* e o *onerror*, então podemos adicionar as seguintes linhas para sabermos se a operação foi executada com sucesso ou se algum erro ocorreu.
 
@@ -76,7 +76,7 @@ openRequest.onsuccess = () => {
 
 Ao executar o código acima, a mensagem da linha 9 será logada no console:
 
-![Ferramentas do desenvovedor - Chrome](images/2018-01-11-indexeddb04.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2018-01-11-indexeddb04.jpg)
 
 ### Recuperando um objeto
 Aqui não muda muita coisa, assim como para armazenar um dado, devemos abrir uma transação para recuperarmos um dado do banco, o mesmo ocorre para as demais operações. Vejamos o código:
@@ -105,7 +105,7 @@ let request = DB.transaction("pessoas")
 
 Na linha 4 não temos nenhuma novidade. Na linha 5 chamamos o método get, passando o valor da chave onde está armazenado o objeto que queremos recuperar. Assim como o método add, o método *get* é uma requisição assíncrona e temos os eventos *onsuccess* e *onerror*. É no onsuccess que teremos acesso ao objeto recuperado, como podemos ver na linha 7. Na imagem abaixo podemos ver o log da linha 7.
 
-![Ferramentas do desenvovedor - Chrome](images/2018-01-11-indexeddb03.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2018-01-11-indexeddb03.jpg)
 
 ### Recuperando todos os registros
 Aqui temos duas opções. Podemos usar o método *getAll*, onde o resultado é um array com os registros da objectStore, ou podemos lançar mão do método *openCursor*, que nos fornece um cursor capaz de iterar em cada valor armazenado na objectStore.
@@ -143,7 +143,7 @@ openRequest.onsuccess= () => {
 
 Utilizar o getAll é bastante simples, basta abrir uma transação, dizer qual a objectStore que será utilizada e chamar o método getAll, que não necessita de nenhum parâmetro. A linha 7 irá fazer o log de um array com todos os registros contidos no banco.
 
-![Ferramentas do desenvovedor - Chrome](images/2018-01-11-indexeddb05.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2018-01-11-indexeddb05.jpg)
 
 Agora, vamos ver um exemplo utilizando **openCursor**:
 
@@ -201,7 +201,7 @@ Note que nessa operação, a nossa transação será do tipo readwrite,  pois es
 
 Se executarmos o código acima e sem seguida dermos um refresh no banco, veremos que o objeto foi realmente atualizado:
 
-![Ferramentas do desenvovedor - Chrome](images/2018-01-11-indexeddb06.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2018-01-11-indexeddb06.jpg)
 
 ### Deletando um objeto
 Para apagarmos um objeto em uma objectStore é a mesma coisa: abrimos uma transação (do tipo readwrite), apontamos a objectStore que iremos operar e por fim fazemos uma requisição para deletar o objeto.
@@ -223,7 +223,7 @@ openRequest.onsuccess= () => {
 
 Se dermos um refresh no banco, veremos que o objeto armazenado na chave 1 não estará mais lá:
 
-![Ferramentas do desenvovedor - Chrome](images/2018-01-11-indexeddb07.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2018-01-11-indexeddb07.jpg)
 
 Pensei em deixar o evento *onerror* da **requisição de abertura do banco** para um próximo post, mas acabaria sendo um post bem pequeno, pois sobre isso não há tanto para se falar. Serei bem sucinto nas próximas linhas, pois o artigo já ficou mais extenso do que eu gostaria.
 
@@ -246,4 +246,4 @@ openRequest.onerror= () => {
 
 O log da linha 10 será executado nos retonando a seguinte exception:
 
-![Ferramentas do desenvovedor - Chrome](images/2018-01-11-indexeddb08.jpg)
+![Ferramentas do desenvovedor - Chrome](/images/2018-01-11-indexeddb08.jpg)

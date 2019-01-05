@@ -11,12 +11,12 @@
         <meta property="og:title" content="IndexedDB – seu banco de dados no client-side (Parte 2)" />
         <meta property="og:type" content="blog" />
         <meta property="og:description" content="Aprenda os primeiros passos para utilizar indexedDB, armazene dados no navegador" />
-        <meta property="og:image" content="images/posts/2017-12-28-indexeddb-logo.jpg" />
+        <meta property="og:image" content="/images/2017-12-28-indexeddb-logo.jpg" />
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:url" content="/2018/01/13/indexed-db-parte-2.html">
         <meta name="twitter:title" content="IndexedDB – seu banco de dados no client-side (Parte 2)" />
-        <meta name="twitter:image" content="images/posts/2017-12-28-indexeddb-logo.jpg" />
+        <meta name="twitter:image" content="/images/2017-12-28-indexeddb-logo.jpg" />
         
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -52,7 +52,7 @@
         
         <article class="content">
             <figure>
-                <img data-large-image="images/posts/2017-12-28-indexeddb-logo.jpg" src="images/posts/2017-12-28-indexeddb-logo.jpg" alt="Logo HTML5 com o nome IndexedDB em seguida">
+                <img data-large-image="/images/2017-12-28-indexeddb-logo.jpg" src="/images/2017-12-28-indexeddb-logo.jpg" alt="Logo HTML5 com o nome IndexedDB em seguida">
             </figure>
             <p>Esse artigo é uma continuação de um artigo anterior, recomendo que leiam primeiro o <a href="/2017/12/20/indexed-db-parte-1.html">IndexedDB – parte 1</a>. No artigo passado falei como criar e deletar as <em>objectStores</em>, e vimos que essas operações eram feitas dentro da callback atrelada ao evento <em>onupgradeneeded</em>.</p>
 
@@ -94,9 +94,9 @@
 Na linha seguinte, estamos especificando em qual objectStore iremos operar. Parece um comando desnecessário, visto que já determinamos isso no primeiro parâmetro do método <em>transaction</em>, mas lembre-se, que poderíamos ter um array de objectStores na transação.
 Finalmente, na linha 17, armazenamos o objeto <strong>pessoa1</strong> no banco através do método <em>add</em> da objectStore. Se abrirmos as ferramentas do desenvolvedor, na aba Application poderemos comprovar isso, mas antes é preciso dar um refresh no banco de dados, aliás, sempre que adicionarmos ou modificarmos alguma coisa no banco é necessário atualizar o mesmo para que possamos ver as alterações:</p>
 
-<p><img src="images/2018-01-11-indexeddb01.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+<p><img src="/images/2018-01-11-indexeddb01.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
 
-<p><img src="images/2018-01-11-indexeddb02.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+<p><img src="/images/2018-01-11-indexeddb02.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
 
 <p>O método <em>add</em> é assíncrono e possui dois event handlers, o <em>onsuccess</em> e o <em>onerror</em>, então podemos adicionar as seguintes linhas para sabermos se a operação foi executada com sucesso ou se algum erro ocorreu.</p>
 
@@ -118,7 +118,7 @@ Finalmente, na linha 17, armazenamos o objeto <strong>pessoa1</strong> no banco 
 
 <p>Ao executar o código acima, a mensagem da linha 9 será logada no console:</p>
 
-<p><img src="images/2018-01-11-indexeddb04.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+<p><img src="/images/2018-01-11-indexeddb04.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
 
 <h3 id="recuperando-um-objeto">Recuperando um objeto</h3>
 <p>Aqui não muda muita coisa, assim como para armazenar um dado, devemos abrir uma transação para recuperarmos um dado do banco, o mesmo ocorre para as demais operações. Vejamos o código:</p>
@@ -145,7 +145,7 @@ Quando o segundo parâmetro não é fornecido, o modo readonly é adotado como p
 
 <p>Na linha 4 não temos nenhuma novidade. Na linha 5 chamamos o método get, passando o valor da chave onde está armazenado o objeto que queremos recuperar. Assim como o método add, o método <em>get</em> é uma requisição assíncrona e temos os eventos <em>onsuccess</em> e <em>onerror</em>. É no onsuccess que teremos acesso ao objeto recuperado, como podemos ver na linha 7. Na imagem abaixo podemos ver o log da linha 7.</p>
 
-<p><img src="images/2018-01-11-indexeddb03.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+<p><img src="/images/2018-01-11-indexeddb03.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
 
 <h3 id="recuperando-todos-os-registros">Recuperando todos os registros</h3>
 <p>Aqui temos duas opções. Podemos usar o método <em>getAll</em>, onde o resultado é um array com os registros da objectStore, ou podemos lançar mão do método <em>openCursor</em>, que nos fornece um cursor capaz de iterar em cada valor armazenado na objectStore.
@@ -181,7 +181,7 @@ Antes de irmos aos exemplos, irei inserir mais dois objetos utilizando o método
 
 <p>Utilizar o getAll é bastante simples, basta abrir uma transação, dizer qual a objectStore que será utilizada e chamar o método getAll, que não necessita de nenhum parâmetro. A linha 7 irá fazer o log de um array com todos os registros contidos no banco.</p>
 
-<p><img src="images/2018-01-11-indexeddb05.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+<p><img src="/images/2018-01-11-indexeddb05.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
 
 <p>Agora, vamos ver um exemplo utilizando <strong>openCursor</strong>:</p>
 
@@ -237,7 +237,7 @@ Antes de irmos aos exemplos, irei inserir mais dois objetos utilizando o método
 
 <p>Se executarmos o código acima e sem seguida dermos um refresh no banco, veremos que o objeto foi realmente atualizado:</p>
 
-<p><img src="images/2018-01-11-indexeddb06.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+<p><img src="/images/2018-01-11-indexeddb06.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
 
 <h3 id="deletando-um-objeto">Deletando um objeto</h3>
 <p>Para apagarmos um objeto em uma objectStore é a mesma coisa: abrimos uma transação (do tipo readwrite), apontamos a objectStore que iremos operar e por fim fazemos uma requisição para deletar o objeto.</p>
@@ -258,7 +258,7 @@ Antes de irmos aos exemplos, irei inserir mais dois objetos utilizando o método
 
 <p>Se dermos um refresh no banco, veremos que o objeto armazenado na chave 1 não estará mais lá:</p>
 
-<p><img src="images/2018-01-11-indexeddb07.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+<p><img src="/images/2018-01-11-indexeddb07.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
 
 <p>Pensei em deixar o evento <em>onerror</em> da <strong>requisição de abertura do banco</strong> para um próximo post, mas acabaria sendo um post bem pequeno, pois sobre isso não há tanto para se falar. Serei bem sucinto nas próximas linhas, pois o artigo já ficou mais extenso do que eu gostaria.</p>
 
@@ -280,7 +280,7 @@ Antes de irmos aos exemplos, irei inserir mais dois objetos utilizando o método
 
 <p>O log da linha 10 será executado nos retonando a seguinte exception:</p>
 
-<p><img src="images/2018-01-11-indexeddb08.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
+<p><img src="/images/2018-01-11-indexeddb08.jpg" alt="Ferramentas do desenvovedor - Chrome" /></p>
 
         </article>
         <footer class="redes-sociais-container">
