@@ -6,9 +6,67 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 08 Jan 2019 19:24:20 -0300</pubDate>
-    <lastBuildDate>Tue, 08 Jan 2019 19:24:20 -0300</lastBuildDate>
+    <pubDate>Tue, 08 Jan 2019 19:31:16 -0300</pubDate>
+    <lastBuildDate>Tue, 08 Jan 2019 19:31:16 -0300</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Acessando hardware do dispositivo com JavaScript</title>
+        <description>&lt;p&gt;Esse é o primeiro artigo de uma série onde apresentarei algumas APIs capazes de acessar o hardware do dispositivo do usuário.&lt;/p&gt;
+
+&lt;p&gt;No artigo de hoje, iniciaremos falando sobre a Battery Status API. Ela pode ser útil quando se deseja ajustar a utilização de recursos da aplicação, diminuindo o uso de bateria, quando esta estiver com um nível muito baixo.&lt;/p&gt;
+
+&lt;h2 id=&quot;battery-api&quot;&gt;Battery API&lt;/h2&gt;
+
+&lt;p&gt;A Battery API fornece algumas informações, a respeito da bateria do dispositivo, tais como, nível atual, estado (carregando ou não), tempo até descarregar e tempo até carga completa. Cada uma dessas informações está contida em uma propriedade do Objeto BatteryManager, como veremos a seguir.&lt;/p&gt;
+
+&lt;p&gt;Através do método getBattery do objeto navigator conseguimos uma promise que contém um objeto &lt;em&gt;BatteryManager&lt;/em&gt;, é ele o coração da API.&lt;/p&gt;
+
+&lt;h3 id=&quot;propriedades&quot;&gt;Propriedades&lt;/h3&gt;
+
+&lt;p&gt;O objeto &lt;em&gt;BatteryManager&lt;/em&gt; possui quatro propriedades de &lt;em&gt;readonly&lt;/em&gt;, vejamos a seguir:&lt;/p&gt;
+
+&lt;h4 id=&quot;level&quot;&gt;level&lt;/h4&gt;
+&lt;p&gt;retorna um número de 0 à 1 (0 se estiver completamente descarregado, 1 se estiver com cargar em 100%) indicando o nível da bateria.&lt;/p&gt;
+
+&lt;h4 id=&quot;charging&quot;&gt;charging&lt;/h4&gt;
+&lt;p&gt;Retorna um boolean, true se o dispositivo estiver carregando, false se não estiver.&lt;/p&gt;
+
+&lt;h4 id=&quot;chargingtime&quot;&gt;chargingTime&lt;/h4&gt;
+&lt;p&gt;Retorna, em segundos, a estimativa do tempo restante até atingir 100% de carga&lt;/p&gt;
+
+&lt;h4 id=&quot;dischargingtime&quot;&gt;dischargingTime&lt;/h4&gt;
+&lt;p&gt;Retorna, em segundos, a estimativa do tempo restante até o dispositivo descarregar completamente&lt;/p&gt;
+
+&lt;h3 id=&quot;eventos&quot;&gt;Eventos&lt;/h3&gt;
+&lt;p&gt;A BatteryManager possui quatro eventos:&lt;/p&gt;
+
+&lt;h4 id=&quot;chargingchange&quot;&gt;chargingchange&lt;/h4&gt;
+&lt;p&gt;É disparado quando o estado de carregamento do dispositivo é alterado.&lt;/p&gt;
+
+&lt;h4 id=&quot;chargingtimechange&quot;&gt;chargingtimechange&lt;/h4&gt;
+&lt;p&gt;É disparado quando a estimativa do tempo de carregamento completo é atualizado.&lt;/p&gt;
+
+&lt;h4 id=&quot;dischargingtimechange&quot;&gt;dischargingtimechange&lt;/h4&gt;
+&lt;p&gt;É disparado quando a estimativa do tempo de descarregamento total é atualizado.&lt;/p&gt;
+
+&lt;h4 id=&quot;levelchange&quot;&gt;levelchange&lt;/h4&gt;
+&lt;p&gt;É disparado quando o nível de bateria é atualizado.&lt;/p&gt;
+
+&lt;h4 id=&quot;exemplo&quot;&gt;Exemplo&lt;/h4&gt;
+
+&lt;p&gt;Vejamos um exemplo abaixo:&lt;/p&gt;
+
+&lt;p data-height=&quot;265&quot; data-theme-id=&quot;dark&quot; data-slug-hash=&quot;MVLKXd&quot; data-default-tab=&quot;js,result&quot; data-user=&quot;maikke&quot; data-embed-version=&quot;2&quot; data-pen-title=&quot;Battery API&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;https://codepen.io/maikke/pen/MVLKXd/&quot;&gt;Battery API&lt;/a&gt; by Maike Negreiros (&lt;a href=&quot;https://codepen.io/maikke&quot;&gt;@maikke&lt;/a&gt;) on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.
+&lt;script async=&quot;&quot; src=&quot;https://static.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+&lt;/p&gt;
+</description>
+        <pubDate>Fri, 13 Apr 2018 00:00:00 -0300</pubDate>
+        <link>http://localhost:4000/2018/04/13/acessando-hardware-do-dispositivo-com-javascript-parte-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/04/13/acessando-hardware-do-dispositivo-com-javascript-parte-1.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Strict Mode - JavaScript não é terra sem lei</title>

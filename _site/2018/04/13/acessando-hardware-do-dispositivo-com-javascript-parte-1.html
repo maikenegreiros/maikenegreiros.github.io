@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <title>Acessando hardware do dispositivo com JavaScript</title>
+<meta charset="utf-8">
+<meta name="theme-color" content="#021885">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Maike Negreiros">
+<meta name="description" content="Obtendo informações da bateria do dispositivo">
+<meta name="keywords" content="javascript, device battery, battery api, battery status api, api bateria">
+<link rel="icon" href="/16x16.png" />
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/post.css">
+        <script src="/js/post-bundle.js"></script>
+
+        <meta property="og:title" content="Acessando hardware do dispositivo com JavaScript" />
+        <meta property="og:type" content="blog" />
+        <meta property="og:description" content="Obtendo informações da bateria do dispositivo" />
+        <meta property="og:image" content="/images/2018-04-13-battery-status-api.jpg" />
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="/2018/04/13/acessando-hardware-do-dispositivo-com-javascript-parte-1.html">
+        <meta name="twitter:title" content="Acessando hardware do dispositivo com JavaScript" />
+        <meta name="twitter:image" content="/images/2018-04-13-battery-status-api.jpg" />
+    </head>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark ">
+  <a href="/" class="navbar-brand">Maike Negreiros</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="/artigos/">Postagens</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="#">Contato</a></li> -->
+      </ul>
+  </div>
+</nav>
+
+    <body>
+        <header class="article-header">
+            <h1>Acessando hardware do dispositivo com JavaScript</h1>
+        
+            <div class="date-container">
+                <p>Postado em: <span class="date">13/04/2018</span></p>
+                <p>Atualizado em: <span class="date">13/04/2018</span></p>
+            </div>
+        </header>
+        
+        <article class="content">
+            <figure>
+                <img data-large-image="/images/2018-04-13-battery-status-api.jpg" src="/images/2018-04-13-battery-status-api.jpg" alt="">
+            </figure>
+            <p>Esse é o primeiro artigo de uma série onde apresentarei algumas APIs capazes de acessar o hardware do dispositivo do usuário.</p>
+
+<p>No artigo de hoje, iniciaremos falando sobre a Battery Status API. Ela pode ser útil quando se deseja ajustar a utilização de recursos da aplicação, diminuindo o uso de bateria, quando esta estiver com um nível muito baixo.</p>
+
+<h2 id="battery-api">Battery API</h2>
+
+<p>A Battery API fornece algumas informações, a respeito da bateria do dispositivo, tais como, nível atual, estado (carregando ou não), tempo até descarregar e tempo até carga completa. Cada uma dessas informações está contida em uma propriedade do Objeto BatteryManager, como veremos a seguir.</p>
+
+<p>Através do método getBattery do objeto navigator conseguimos uma promise que contém um objeto <em>BatteryManager</em>, é ele o coração da API.</p>
+
+<h3 id="propriedades">Propriedades</h3>
+
+<p>O objeto <em>BatteryManager</em> possui quatro propriedades de <em>readonly</em>, vejamos a seguir:</p>
+
+<h4 id="level">level</h4>
+<p>retorna um número de 0 à 1 (0 se estiver completamente descarregado, 1 se estiver com cargar em 100%) indicando o nível da bateria.</p>
+
+<h4 id="charging">charging</h4>
+<p>Retorna um boolean, true se o dispositivo estiver carregando, false se não estiver.</p>
+
+<h4 id="chargingtime">chargingTime</h4>
+<p>Retorna, em segundos, a estimativa do tempo restante até atingir 100% de carga</p>
+
+<h4 id="dischargingtime">dischargingTime</h4>
+<p>Retorna, em segundos, a estimativa do tempo restante até o dispositivo descarregar completamente</p>
+
+<h3 id="eventos">Eventos</h3>
+<p>A BatteryManager possui quatro eventos:</p>
+
+<h4 id="chargingchange">chargingchange</h4>
+<p>É disparado quando o estado de carregamento do dispositivo é alterado.</p>
+
+<h4 id="chargingtimechange">chargingtimechange</h4>
+<p>É disparado quando a estimativa do tempo de carregamento completo é atualizado.</p>
+
+<h4 id="dischargingtimechange">dischargingtimechange</h4>
+<p>É disparado quando a estimativa do tempo de descarregamento total é atualizado.</p>
+
+<h4 id="levelchange">levelchange</h4>
+<p>É disparado quando o nível de bateria é atualizado.</p>
+
+<h4 id="exemplo">Exemplo</h4>
+
+<p>Vejamos um exemplo abaixo:</p>
+
+<p data-height="265" data-theme-id="dark" data-slug-hash="MVLKXd" data-default-tab="js,result" data-user="maikke" data-embed-version="2" data-pen-title="Battery API" class="codepen">See the Pen <a href="https://codepen.io/maikke/pen/MVLKXd/">Battery API</a> by Maike Negreiros (<a href="https://codepen.io/maikke">@maikke</a>) on <a href="https://codepen.io">CodePen</a>.
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+</p>
+
+        </article>
+        <footer class="redes-sociais-container">
+    <p><a class="rede-social github" target="_blank" href="https://github.com/maikenegreiros">GitHub</a></p>
+    <p><a class="rede-social facebook" target="_blank" href="https://www.facebook.com/maikenegreiros">Facebook</a></p>
+    <p><a class="rede-social twitter" target="_blank" href="https://twitter.com/maikenegreiros">Twitter</a></p>
+    <p><a class="rede-social linkedin" target="_blank" href="https://www.linkedin.com/in/maike-negreiros-3818ab14a/">Linkedin</a></p>
+    <p><a class="rede-social mail" target="_blank" href="mailto:maike_jbe@hotmail.com">E-mail</a></p>
+</footer>
+
+    </body>
+</html>
