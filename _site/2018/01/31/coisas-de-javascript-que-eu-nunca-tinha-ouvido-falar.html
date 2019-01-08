@@ -1,0 +1,318 @@
+<html>
+    <head>
+        <title>Coisas de JavaScript que eu nunca tinha ouvido falar</title>
+<meta charset="utf-8">
+<meta name="theme-color" content="#021885">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Maike Negreiros">
+<meta name="description" content="Nesse artigo você verá coisas que existem no JavaScript, mas que nem todo mundo conhece.">
+<meta name="keywords" content="javascript, html5, ecmascript, es6, es2015, indexeddb, banco de dados">
+<link rel="icon" href="/16x16.png" />
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/post.css">
+        <script src="/js/post-bundle.js"></script>
+
+        <meta property="og:title" content="Coisas de JavaScript que eu nunca tinha ouvido falar" />
+        <meta property="og:type" content="blog" />
+        <meta property="og:description" content="Nesse artigo você verá coisas que existem no JavaScript, mas que nem todo mundo conhece." />
+        <meta property="og:image" content="/images/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.png" />
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="/2018/01/31/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.html">
+        <meta name="twitter:title" content="Coisas de JavaScript que eu nunca tinha ouvido falar" />
+        <meta name="twitter:image" content="/images/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.png" />
+    </head>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark ">
+  <a href="/" class="navbar-brand">Maike Negreiros</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="/artigos/">Postagens</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="#">Contato</a></li> -->
+      </ul>
+  </div>
+</nav>
+
+    <body>
+        <header class="article-header">
+            <h1>Coisas de JavaScript que eu nunca tinha ouvido falar</h1>
+        
+            <div class="date-container">
+                <p>Postado em: <span class="date">31/01/2018</span></p>
+                <p>Atualizado em: <span class="date">13/01/2018</span></p>
+            </div>
+        </header>
+        
+        <article class="content">
+            <figure>
+                <img data-large-image="/images/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.png" src="/images/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.png" alt="">
+            </figure>
+            <p>O post de hoje é uma tradução de um artigo que vi uns dias atrás, de autoria do <a href="https://twitter.com/SkylloDev" target="_blank">Nick</a>, e achei muito legal, por isso achei que seria interessante compartilhá-lo com vocês aqui no blog. Pra quem deita e rola no inglês, pode conferir o artigo original <a href="http://air.ghost.io/js-things-i-never-knew-existed/amp/?__twitter_impression=true" target="_blank">aqui</a>.
+Para quem não tem uma boa afinidade com a língua, segue o artigo traduzido logo abaixo:</p>
+
+<p>Estava lendo o MDN docs outro dia e descobri essas features e APIs JavaScript que eu nunca tinha ouvido falar. Então aqui está uma pequena lista dessas coisas, útil ou não – aprender JS parece uma coisa que nunca tem fim.</p>
+
+<h2 id="label-statements">Label Statements</h2>
+
+<p>Você pode rotular blocos e loops <em>for</em> em javascript. Quem sabia? (Eu não!) Você pode pegar a referência à esses rótulos e usar <em>break</em> e <em>continue</em> nos loops <em>for</em>, e <em>break</em> em blocos.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">loop1</span><span class="p">:</span> <span class="c1">// rotulando "loop1"</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// "loop1"</span>
+    <span class="nl">loop2</span><span class="p">:</span> <span class="c1">// rotulando "loop2"</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// "loop2"</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">continue</span> <span class="nx">loop1</span><span class="p">;</span> <span class="c1">// continue no "loop1"</span>
+            <span class="c1">// break loop1; // sai do "loop1"</span>
+        <span class="p">}</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`i = </span><span class="p">${</span><span class="nx">i</span><span class="p">}</span><span class="s2">, j = </span><span class="p">${</span><span class="nx">j</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* 
+* # Output
+* i = 0, j = 0
+* i = 0, j = 1
+* i = 0, j = 2
+* i = 2, j = 0
+* i = 2, j = 1
+* i = 2, j = 2
+*/</span>
+</code></pre></div></div>
+
+<p>Aqui vai um exemplo nomeando  um bloco, você pode usar apenas break em blocos.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">foo</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'um'</span><span class="p">);</span>
+    <span class="k">break</span> <span class="nx">foo</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'esse log não será executado'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'dois'</span><span class="p">);</span>
+
+<span class="cm">/*
+* # Output
+* um
+* dois
+*/</span>
+</code></pre></div></div>
+
+<h2 id="operador-void">Operador “void”</h2>
+
+<p>Eu pensei que sabia todos os operadores, até que eu vi um que está presente no Javascript desde 1996. Ele é suportado por todos os navegadores e é bem fácil de entender. Veja um trecho retirado do MDN:</p>
+
+<p><em>O operador void avalia a expressão e depois retorna undefined.</em></p>
+
+<p>Isso nos permite escrever um <a href="https://developer.mozilla.org/pt-BR/docs/Glossario/IIFE" target="_blank">IIFE</a> alternativo como esse:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">void</span> <span class="kd">function</span> <span class="nx">iife</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
+<span class="p">}();</span>
+
+<span class="c1">// é o mesmo que ...</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="nx">iife</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<p>Uma coisa ruim com <em>void</em> é o fato de o retorno da função ser undefined.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">word</span> <span class="o">=</span> <span class="k">void</span> <span class="kd">function</span> <span class="nx">iife</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'hello'</span><span class="p">;</span>
+<span class="p">}();</span>
+
+<span class="c1">// word é "undefined"</span>
+
+<span class="kd">const</span> <span class="nx">word</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="nx">iife</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'hello'</span><span class="p">;</span>
+<span class="p">})();</span>
+
+<span class="c1">// word é "hello"</span>
+</code></pre></div></div>
+
+<p>Você também pode usar <em>void</em> com <em>async</em>, utilizando como um ponto de entrada assíncrono para o seu código:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">void</span> <span class="k">async</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">'air.ghost.io'</span><span class="p">);</span> 
+        <span class="kd">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}();</span>
+
+<span class="c1">// ou faça apenas assim :)</span>
+
+<span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">'air.ghost.io'</span><span class="p">);</span> 
+        <span class="kd">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<h2 id="operador-de-vírgula">Operador de vírgula</h2>
+
+<p>Depois de ler sobre o operador de vírgula, eu percebi que eu não estava totalmente ciente de como o mesmo funcionava. Veja um ótimo trecho retirado do MDN:</p>
+
+<p><em>O operador de vírgula avalia cada um de seus operandos(da esqueda para a direita) e retorna o valor de seu último operando.</em></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">myFunc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span> <span class="c1">// mesmo que return ++x;</span>
+<span class="p">}</span>
+
+<span class="nx">y</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// retorna true no console</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span> <span class="c1">// false (mais à esquerda)</span>
+
+<span class="nx">z</span> <span class="o">=</span> <span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">// retorna true no console</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">z</span><span class="p">);</span> <span class="c1">// true (mais à direita)</span>
+</code></pre></div></div>
+
+<h3 id="usando-operador-condicional">Usando operador condicional</h3>
+
+<p>O último valor no operador de vírgula será o valor retornado para a condicional. Então você pode colocar  qualquer número de expressões antes. No exemplo abaixo eu coloco um console log antes de retornar um booleano.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">type</span> <span class="o">=</span> <span class="s1">'man'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">isMale</span> <span class="o">=</span> <span class="nx">type</span> <span class="o">===</span> <span class="s1">'man'</span> <span class="p">?</span> <span class="p">(</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hi Man!'</span><span class="p">),</span>
+    <span class="kc">true</span>
+<span class="p">)</span> <span class="p">:</span> <span class="p">(</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hi Lady!'</span><span class="p">),</span>
+    <span class="kc">false</span>
+<span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`isMale is "</span><span class="p">${</span><span class="nx">isMale</span><span class="p">}</span><span class="s2">"`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="api-de-internacionalização">API de Internacionalização</h2>
+
+<p>A Internacionalização era uma coisa difícil de se trabalhar há pouco tempo atrás, felizmente existe uma API com bom suporte atualmente na maioria dos navegadores. Uma das minhas features favoritas é o formatador de datas. Veja o exemplo abaixo.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+
+<span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">year</span><span class="p">:</span> <span class="s1">'numeric'</span><span class="p">,</span> 
+    <span class="na">month</span><span class="p">:</span> <span class="s1">'long'</span><span class="p">,</span> 
+    <span class="na">day</span><span class="p">:</span> <span class="s1">'numeric'</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">formatter1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="s1">'es-es'</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">formatter1</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">));</span> <span class="c1">// 22 de diciembre de 2017</span>
+
+<span class="kd">const</span> <span class="nx">formatter2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">(</span><span class="s1">'en-us'</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">formatter2</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="nx">date</span><span class="p">));</span> <span class="c1">// December 22, 2017</span>
+</code></pre></div></div>
+
+<h2 id="pipeline-operator">Pipeline operator</h2>
+
+<p>No momento em que eu estava escrevendo este artigo, o operador pipeline só tinha suporte no Firefox 58+ com uma flag, entretanto, o Babel tem um <a href="https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-pipeline-operator" target="_blank">plugin</a> para lidar com essa situação. Eu gosto bastante desse.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">square</span> <span class="o">=</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">n</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">increment</span> <span class="o">=</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">// sem pipeline operator</span>
+<span class="nx">square</span><span class="p">(</span><span class="nx">increment</span><span class="p">(</span><span class="nx">square</span><span class="p">(</span><span class="mi">2</span><span class="p">)));</span> <span class="c1">// 25</span>
+
+<span class="c1">// com pipeline operator</span>
+<span class="mi">2</span> <span class="o">|&gt;</span> <span class="nx">square</span> <span class="o">|&gt;</span> <span class="nx">increment</span> <span class="o">|&gt;</span> <span class="nx">square</span><span class="p">;</span> <span class="c1">// 25</span>
+</code></pre></div></div>
+
+<h2 id="menções-importantes">Menções importantes</h2>
+
+<h3 id="atômicos">Atômicos</h3>
+
+<p>Operações atômicas nos permite leitura e escrita previsíveis de valores quando os dados são compartilhados entre múltiplas threads, esperando que outras operações encerrem antes que a próxima seja executada. Operações atômicas são bastante úteis para manter dados síncronos entre coisas como a thread principal e outro WebWorker.
+Eu gosto bastante disso em outras linguagens, como Java. Eu sinto que elas serão mais usadas em JS quando a maioria dos programadores começarem a usar WebWorkers para tirar operações da thread principal.</p>
+
+<h3 id="arrayprototypereduceright">Array.prototype.reduceRight</h3>
+
+<p>Ok, eu nunca tinha usado este porque é basicamente <em>Array.prototype.reduce()</em> + <em>Array.prototype.reverse()</em> e é bem difícil que você precise dessa combinação. Mas, se você precisar, <em>ReduceRight</em> é perfeito para você!</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">achatado</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]].</span><span class="nx">reduceRight</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[]);</span>
+
+<span class="c1">// o array achatado é [4, 5, 2, 3, 0, 1]</span>
+</code></pre></div></div>
+
+<h3 id="parâmetros-do-settimeout">Parâmetros do setTimeOut()</h3>
+
+<p>Eu provavelmente teria me poupado de um <em>.bind(…)</em> ou dois por saber disso - agora tem sido assim.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">alert</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">'Hello world!'</span><span class="p">);</span>
+
+<span class="cm">/*
+* # Output (alert)
+* Hello World!
+*/</span>
+
+<span class="kd">function</span> <span class="nx">log</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">textTwo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">textTwo</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">log</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">'Hello World!'</span><span class="p">,</span> <span class="s1">'And Mars!'</span><span class="p">);</span>
+
+<span class="cm">/*
+* # Output
+* Hello World! And Mars!
+*/</span>
+</code></pre></div></div>
+
+<h3 id="htmlelementdataset">HTMLElement.dataset</h3>
+
+<p>Eu sempre usei <em>data attributes</em> personalizados (<em>data -**) nos elementos HTML, mas, infelizmente, eu não estava ciente que havia uma API para consultá-los facilmente, até agora. Além de algumas restrições de nomenclarura (ver este <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset" target="_blank">link</a>) a api é basicamente *dash-case</em> para atributos e <em>camelCase</em> quando forem consultados no JS. Então o atributo <em>data-birth-planet</em> seria <em>birthPlanet</em> em JavaScript.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">'person'</span> <span class="na">data-name=</span><span class="s">'john'</span> <span class="na">data-birth-planet=</span><span class="s">'earth'</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Query:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">personEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#person'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personEl</span><span class="p">.</span><span class="nx">dataset</span><span class="p">)</span> <span class="c1">// DOMStringMap {name: "john", birthPlanet: "earth"}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personEl</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="c1">// john</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personEl</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">birthPlanet</span><span class="p">)</span> <span class="c1">// earth</span>
+
+<span class="c1">// Você pode adicionar mais se quiser</span>
+<span class="nx">personEl</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personEl</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span> <span class="c1">// bar</span>
+</code></pre></div></div>
+
+<h2 id="fim">Fim</h2>
+
+<p>Espero que você tenha descoberto algo novo de JavaScript assim como eu. Parabéns ao Mozilla pelo novo site do MDN, está muito melhor, na minha opinião – Eu passei muito mais tempo lendo nele do que eu pensava que iria.
+Feliz 2018!</p>
+
+        </article>
+        <footer class="redes-sociais-container">
+    <p><a class="rede-social github" target="_blank" href="https://github.com/maikenegreiros">GitHub</a></p>
+    <p><a class="rede-social facebook" target="_blank" href="https://www.facebook.com/maikenegreiros">Facebook</a></p>
+    <p><a class="rede-social twitter" target="_blank" href="https://twitter.com/maikenegreiros">Twitter</a></p>
+    <p><a class="rede-social linkedin" target="_blank" href="https://www.linkedin.com/in/maike-negreiros-3818ab14a/">Linkedin</a></p>
+    <p><a class="rede-social mail" target="_blank" href="mailto:maike_jbe@hotmail.com">E-mail</a></p>
+</footer>
+
+    </body>
+</html>
