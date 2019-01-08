@@ -6,9 +6,264 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 08 Jan 2019 18:37:04 -0300</pubDate>
-    <lastBuildDate>Tue, 08 Jan 2019 18:37:04 -0300</lastBuildDate>
+    <pubDate>Tue, 08 Jan 2019 19:24:20 -0300</pubDate>
+    <lastBuildDate>Tue, 08 Jan 2019 19:24:20 -0300</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Strict Mode - JavaScript não é terra sem lei</title>
+        <description>&lt;p&gt;O strict mode foi inserido no Ecmascript 5 e age dizendo ao browser para interpretar o código JavaScript de forma mais rigorosa (strict), lançando erros que em modo normal são silenciados. Isso aumenta a qualidade do código e nos previne de bugs futuros.&lt;/p&gt;
+
+&lt;h2 id=&quot;ativando-strict-mode&quot;&gt;Ativando Strict Mode&lt;/h2&gt;
+
+&lt;p&gt;Para ativar o strict mode é bastante simples, basta inserir uma string ‘use strict’ no código. Essa string pode ser colocada no começo do código, ou seja, no escopo global, ou pode ser colocada no início do escopo de uma função, nesse caso, o strict mode só valerá para o código inserido dentro desta função.&lt;/p&gt;
+
+&lt;h3 id=&quot;strict-mode-no-escopo-global&quot;&gt;strict mode no escopo global:&lt;/h3&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/88c891e1453a8f407e25f287ea8319a1.js&quot;&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;strict-mode-no-escopo-de-função&quot;&gt;strict mode no escopo de função:&lt;/h3&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/2063d5ed203092ee5213825e232da6e5.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Para que tenhamos um código mais seguro, o strict mode muda algumas coisas na forma como o browsers executam o código. Vejamos algumas dessas mudanças:&lt;/p&gt;
+
+&lt;h2 id=&quot;variáveis-não-declaradas&quot;&gt;Variáveis não declaradas&lt;/h2&gt;
+
+&lt;p&gt;Em strict mode utilizar variáveis não declaradas lança um Uncaught Reference Error.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/76063797e1f056a25870a0c2b25bcefe.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Sem strict mode o erro não ocorre e uma variavel de nome variavel é automaticamente declarada e tem valor dez atribuída a mesma.&lt;/p&gt;
+
+&lt;h2 id=&quot;delete&quot;&gt;Delete&lt;/h2&gt;
+
+&lt;p&gt;Em strict mode, tentar deletar uma variável retorna um erro, em modo normal esse erro é silenciado. Vejamos o código:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/7aea3a8bed8cacf36de50dcfad0326de.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Se o código acima for executado em modo normal, a variável não é deletada, porém, nenhum erro é lançado.&lt;/p&gt;
+
+&lt;h2 id=&quot;with&quot;&gt;With&lt;/h2&gt;
+
+&lt;p&gt;A keyword with não existe mais no strict mode, tentar usá-la simplesmente lança um erro de sintaxe:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/0fa461ad5a12f787629544328cdf5310.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;parâmetros-duplicados&quot;&gt;Parâmetros duplicados&lt;/h2&gt;
+
+&lt;p&gt;No modo strict, parâmetros duplicados também lança um erro de sintaxe.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/e1f6423921919da8ab5311d5c194c231.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;atribuições-sem-efeito&quot;&gt;Atribuições sem efeito&lt;/h2&gt;
+
+&lt;p&gt;Em modo não strict, atribuições que possam vir a falhar por algum motivo, não lançam qualquer erro. Em modo strict isso não acontece mais. Qualquer um dos exemplos abaixo lançam um Type Error.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/085fd7f6bfffcf95f92d17eac813217b.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;proibido-definir-propriedades-em-valores-primitivos&quot;&gt;Proibido definir propriedades em valores primitivos&lt;/h2&gt;
+
+&lt;p&gt;Em modo não strict, fazer coisas absurdas como as ilustradas abaixo não emitiam qualquer erro.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/52cfe046a80934beb692cac85a9fa2b8.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;palavras-reservadas&quot;&gt;Palavras reservadas&lt;/h2&gt;
+
+&lt;p&gt;Em modo strict, &lt;em&gt;eval&lt;/em&gt; e &lt;em&gt;arguments&lt;/em&gt;, se tornam palavras reservadas, portanto não é possível declarar variáveis com esses nomes.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/3f5d5ac2704f2b7d6eb8a0050fc2cb9e.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;variáveis-definidas-em-eval&quot;&gt;Variáveis definidas em eval&lt;/h2&gt;
+
+&lt;p&gt;Em modo não strict, variáveis definidas dentro de eval são adicionadas ao escopo global. Em modo strict, se tentarmos acessar, no escopo global, uma variável definida em eval, um erro será lançado:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/707bb4661f304108347bbe37c72c95dd.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;this&quot;&gt;This&lt;/h2&gt;
+
+&lt;p&gt;Em modo não strict, o valor do this sempre será tranformado em um objeto, isso não ocorre em modo strict. Veja alguns exemplos:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/12843a4f7813b5b4557db7792bc28af7.js&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/f1a305180d60aea3dfac68c9a8eddd38.js&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/4efbc4f8364185d83e53b8fc179d3ea5.js&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://gist.github.com/maikenegreiros/3e5ddd66ba7266e3d3c41069fb89c743.js&quot;&gt;&lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 14 Mar 2018 00:00:00 -0300</pubDate>
+        <link>http://localhost:4000/2018/03/14/strict-mode-javascript-nao-e-terra-sem-lei.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/03/14/strict-mode-javascript-nao-e-terra-sem-lei.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Desvendando a Console API</title>
+        <description>&lt;p&gt;Hoje o assunto é sobre uma ferramenta que todo desenvolvedor JavaScript conhece. Quem nunca usou um &lt;em&gt;console.log&lt;/em&gt; no meio do código pra saber porque alguma função não funcionava conforme esperado?
+Esses dias eu resolvi ir mais à fundo nessa API, já que a uso diariamente, e descobri umas coisas bem legais para mostrar pra vocês.&lt;/p&gt;
+
+&lt;h2 id=&quot;consolelog&quot;&gt;Console.log&lt;/h2&gt;
+&lt;p&gt;Esse método, eu creio que seja conhecido por todos. O método &lt;em&gt;log&lt;/em&gt; exibe uma mensagem no console do navegador. Você pode passar simplesmente uma string, ou um objeto como o abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;artigo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;titulo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Desvendando a Console API&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;descricao&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Conheça métodos da API que podem melhorar seu debbuging&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://maikenegreiros.me/artigos/desvendando-a-console-api/&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;se executarmos a seguinte linha de código, teremos o resultado abaixo no console do chrome.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;artigo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    &lt;img data-large-image=&quot;2018-02-21-console-api-01.jpg&quot; src=&quot;/images/2018-02-21-console-api-01.jpg&quot; alt=&quot;Imagem do console do navegador&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;consoletable&quot;&gt;Console.table&lt;/h2&gt;
+&lt;p&gt;Ah, esse aqui foi um das que mais me surpreendeu. O método &lt;em&gt;table&lt;/em&gt; aceita um objeto ou array e mostra os dados de forma tabular. Vamos levar em consideração o objeto utilizado anteriormente para ilustrar aqui:&lt;/p&gt;
+
+&lt;p&gt;com o método table temos o seguinte:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;artigo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    &lt;img data-large-image=&quot;2018-02-21-console-api-02.jpg&quot; src=&quot;/images/2018-02-21-console-api-02.jpg&quot; alt=&quot;Imagem do console do navegador&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Veja como ficou muito mais fácil a leitura do objeto. Ela é bastante útil quando se está trabalhando com uma API e a mesma lhe fornece um JSON gigantesco. Fica muito mais fácil de visualizar o objeto.&lt;/p&gt;
+
+&lt;h2 id=&quot;consolecount&quot;&gt;Console.count&lt;/h2&gt;
+&lt;p&gt;Esse método loga no console o número de vezes que foi chamado. Ele tem um parâmetro opcional que dá um nome ao contador. Caso seu código possua mais de um contador, é interessante passar esse parâmetro. Veja o código abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;somaDoisNumeros&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Função Soma&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;somaDoisNumeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;somaDoisNumeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;somaDoisNumeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;86&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    &lt;img data-large-image=&quot;2018-02-21-console-api-03.jpg&quot; src=&quot;/images/2018-02-21-console-api-03.jpg&quot; alt=&quot;Imagem do console do navegador&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;consolegroup&quot;&gt;Console.group&lt;/h2&gt;
+&lt;p&gt;Esse eu tenho usado bastante. É interessante usar quando você precisa logar muita mensagem no console do Browser, sem esse método, os logs ficariam todos espalhados e o desenvolvedor sem saber de onde vieram. Ele é utilizado em conjunto com o método groupEnd, todos os métodos da API Console que forem chamado entre esses dois métodos serão agrupados em um só bloco:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;somaDoisNumeros&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Função Soma&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;groupEnd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;somaDoisNumeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    &lt;img data-large-image=&quot;2018-02-21-console-api-04.jpg&quot; src=&quot;/images/2018-02-21-console-api-04.jpg&quot; alt=&quot;Imagem do console do navegador&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;consoletime&quot;&gt;Console.time&lt;/h2&gt;
+
+&lt;p&gt;Inicia um cronômetro. É bastante útil quando se deseja saber qual o tempo que uma função leva para ser executada.
+O método time aceita um parâmetro opcional, uma string que rotulará o cronômetro.
+Abaixo, vemos quanto tempo a função contarAteMil leva para ser executada:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;contarAteMil&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;contarAteMil&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//qualquer coisa aqui&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timeEnd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;contarAteMil&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;contarAteMil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    &lt;img data-large-image=&quot;2018-02-21-console-api-05.jpg&quot; src=&quot;/images/2018-02-21-console-api-05.jpg&quot; alt=&quot;Imagem do console do navegador&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;consoletrace&quot;&gt;Console.trace&lt;/h2&gt;
+
+&lt;p&gt;Gera um rastreamento de pilha do ponto onde o método foi chamado. Esse método pode ser útil quando se quer entender o fluxo de execução de um código grande. Veja o código abaixo como exemplo:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDados&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//Aqui poderia existir uma requisição Ajax que retornasse algo,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//em vez disso, apenas declarei a variavel abaixo e atribuí um valor a ela&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dados&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Luiz&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;idade&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;trace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dados&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;updateView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;getDados&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//Um código qualquer que atualiza a view com base&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//nos dados obtidos na chamada de getDados&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;updateView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    &lt;img data-large-image=&quot;2018-02-21-console-api-06.jpg&quot; src=&quot;/images/2018-02-21-console-api-06.jpg&quot; alt=&quot;Imagem do console do navegador&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;testes-unitários-com-a-api-console&quot;&gt;Testes unitários com a API Console&lt;/h2&gt;
+&lt;p&gt;Aqui falaremos do método &lt;em&gt;console.assert&lt;/em&gt;. É claro que esse método não descartará o uso de um &lt;a target=&quot;_blank&quot; href=&quot;https://mochajs.org/&quot;&gt;Mocha&lt;/a&gt; ou &lt;a target=&quot;_blank&quot; href=&quot;http://qunitjs.com/&quot;&gt;Qunit&lt;/a&gt;, mas já é alguma coisa.
+Esse método aceita dois parâmetro, o primeiro é a afirmação(assert) a ser avaliada, no segundo parâmetro podemos passar a mensagem que será apresentada caso a afirmação não seja verdadeira.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;somaDoisNumeros&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;somaDoisNumeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;A função contém erros&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    &lt;img data-large-image=&quot;2018-02-21-console-api-07.jpg&quot; src=&quot;/images/2018-02-21-console-api-07.jpg&quot; alt=&quot;Imagem do console do navegador&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Na linha 2, eu errei o sinal da operação propositalmente, em vez de um “+”, coloquei um “-”. Sendo assim o resultado da função chamada na linha 5 jamais será 10, portanto no console receberemos a mensagem fornecida no segundo parâmetro: “A função contém erros”.
+Experimente corrigir o sinal da operação e veja que o console não exibirá a mensagem de erro.&lt;/p&gt;
+
+&lt;h2 id=&quot;consoleclear&quot;&gt;console.clear&lt;/h2&gt;
+&lt;p&gt;Como o nome sugere, ele limpa o console, porém, considero muito mais prático digitar um ctrl + l.&lt;/p&gt;
+
+&lt;h2 id=&quot;formatação-de-texto-no-console&quot;&gt;Formatação de texto no console&lt;/h2&gt;
+&lt;p&gt;Desde que abri o console do navegador no facebook, fiquei curioso pra saber como eles conseguiam formatar o texto daquela forma, até o momento eu nem sabia que era possível fazer isso. Pois bem, veja como é possível no exemplo abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;%cUma mensagem estilizada&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;color: red; font-size: 60px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;com o especificador de formato “%c” podemos inserir código css na nossa string. Veja o resultado:&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img data-large-image=&quot;2018-02-21-console-api-08.jpg&quot; src=&quot;/images/2018-02-21-console-api-08.jpg&quot; alt=&quot;Imagem do console do navegador&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;A Console API possui outros métodos, mas escolhi apenas esses para que o artigo não ficasse grande demais, espero que tenham gostado.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 21 Feb 2018 00:00:00 -0300</pubDate>
+        <link>http://localhost:4000/2018/02/21/desvendando-a-console-api.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/02/21/desvendando-a-console-api.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Coisas de JavaScript que eu nunca tinha ouvido falar</title>

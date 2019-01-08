@@ -1,0 +1,233 @@
+<html>
+    <head>
+        <title>Desvendando a Console API</title>
+<meta charset="utf-8">
+<meta name="theme-color" content="#021885">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Maike Negreiros">
+<meta name="description" content="Conheça métodos da API que podem melhorar seu debbuging.">
+<meta name="keywords" content="javascript, console, console api, console javascript">
+<link rel="icon" href="/16x16.png" />
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="/css/main.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/post.css">
+        <script src="/js/post-bundle.js"></script>
+
+        <meta property="og:title" content="Desvendando a Console API" />
+        <meta property="og:type" content="blog" />
+        <meta property="og:description" content="Conheça métodos da API que podem melhorar seu debbuging." />
+        <meta property="og:image" content="/images/2018-02-21-desvendando-a-console-api.jpg" />
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="/2018/02/21/desvendando-a-console-api.html">
+        <meta name="twitter:title" content="Desvendando a Console API" />
+        <meta name="twitter:image" content="/images/2018-02-21-desvendando-a-console-api.jpg" />
+    </head>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark ">
+  <a href="/" class="navbar-brand">Maike Negreiros</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="/artigos/">Postagens</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="#">Contato</a></li> -->
+      </ul>
+  </div>
+</nav>
+
+    <body>
+        <header class="article-header">
+            <h1>Desvendando a Console API</h1>
+        
+            <div class="date-container">
+                <p>Postado em: <span class="date">21/02/2018</span></p>
+                <p>Atualizado em: <span class="date">21/02/2018</span></p>
+            </div>
+        </header>
+        
+        <article class="content">
+            <figure>
+                <img data-large-image="/images/2018-02-21-desvendando-a-console-api.jpg" src="/images/2018-02-21-desvendando-a-console-api.jpg" alt="">
+            </figure>
+            <p>Hoje o assunto é sobre uma ferramenta que todo desenvolvedor JavaScript conhece. Quem nunca usou um <em>console.log</em> no meio do código pra saber porque alguma função não funcionava conforme esperado?
+Esses dias eu resolvi ir mais à fundo nessa API, já que a uso diariamente, e descobri umas coisas bem legais para mostrar pra vocês.</p>
+
+<h2 id="consolelog">Console.log</h2>
+<p>Esse método, eu creio que seja conhecido por todos. O método <em>log</em> exibe uma mensagem no console do navegador. Você pode passar simplesmente uma string, ou um objeto como o abaixo:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">artigo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">"titulo"</span><span class="p">:</span> <span class="s2">"Desvendando a Console API"</span><span class="p">,</span>
+    <span class="s2">"descricao"</span><span class="p">:</span> <span class="s2">"Conheça métodos da API que podem melhorar seu debbuging"</span><span class="p">,</span>
+    <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"https://maikenegreiros.me/artigos/desvendando-a-console-api/"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>se executarmos a seguinte linha de código, teremos o resultado abaixo no console do chrome.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">artigo</span><span class="p">)</span>
+</code></pre></div></div>
+
+<figure>
+    <img data-large-image="2018-02-21-console-api-01.jpg" src="/images/2018-02-21-console-api-01.jpg" alt="Imagem do console do navegador" />
+</figure>
+
+<h2 id="consoletable">Console.table</h2>
+<p>Ah, esse aqui foi um das que mais me surpreendeu. O método <em>table</em> aceita um objeto ou array e mostra os dados de forma tabular. Vamos levar em consideração o objeto utilizado anteriormente para ilustrar aqui:</p>
+
+<p>com o método table temos o seguinte:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="nx">artigo</span><span class="p">)</span>
+</code></pre></div></div>
+
+<figure>
+    <img data-large-image="2018-02-21-console-api-02.jpg" src="/images/2018-02-21-console-api-02.jpg" alt="Imagem do console do navegador" />
+</figure>
+
+<p>Veja como ficou muito mais fácil a leitura do objeto. Ela é bastante útil quando se está trabalhando com uma API e a mesma lhe fornece um JSON gigantesco. Fica muito mais fácil de visualizar o objeto.</p>
+
+<h2 id="consolecount">Console.count</h2>
+<p>Esse método loga no console o número de vezes que foi chamado. Ele tem um parâmetro opcional que dá um nome ao contador. Caso seu código possua mais de um contador, é interessante passar esse parâmetro. Veja o código abaixo:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">somaDoisNumeros</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">count</span><span class="p">(</span><span class="s2">"Função Soma"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">}</span>
+
+<span class="nx">somaDoisNumeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nx">somaDoisNumeros</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nx">somaDoisNumeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">86</span><span class="p">)</span>
+</code></pre></div></div>
+
+<figure>
+    <img data-large-image="2018-02-21-console-api-03.jpg" src="/images/2018-02-21-console-api-03.jpg" alt="Imagem do console do navegador" />
+</figure>
+
+<h2 id="consolegroup">Console.group</h2>
+<p>Esse eu tenho usado bastante. É interessante usar quando você precisa logar muita mensagem no console do Browser, sem esse método, os logs ficariam todos espalhados e o desenvolvedor sem saber de onde vieram. Ele é utilizado em conjunto com o método groupEnd, todos os métodos da API Console que forem chamado entre esses dois métodos serão agrupados em um só bloco:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">somaDoisNumeros</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="s2">"Função Soma"</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">}</span>
+
+<span class="nx">somaDoisNumeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<figure>
+    <img data-large-image="2018-02-21-console-api-04.jpg" src="/images/2018-02-21-console-api-04.jpg" alt="Imagem do console do navegador" />
+</figure>
+
+<h2 id="consoletime">Console.time</h2>
+
+<p>Inicia um cronômetro. É bastante útil quando se deseja saber qual o tempo que uma função leva para ser executada.
+O método time aceita um parâmetro opcional, uma string que rotulará o cronômetro.
+Abaixo, vemos quanto tempo a função contarAteMil leva para ser executada:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">contarAteMil</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s2">"contarAteMil"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//qualquer coisa aqui</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">timeEnd</span><span class="p">(</span><span class="s2">"contarAteMil"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">contarAteMil</span><span class="p">()</span>
+</code></pre></div></div>
+
+<figure>
+    <img data-large-image="2018-02-21-console-api-05.jpg" src="/images/2018-02-21-console-api-05.jpg" alt="Imagem do console do navegador" />
+</figure>
+
+<h2 id="consoletrace">Console.trace</h2>
+
+<p>Gera um rastreamento de pilha do ponto onde o método foi chamado. Esse método pode ser útil quando se quer entender o fluxo de execução de um código grande. Veja o código abaixo como exemplo:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">getDados</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">//Aqui poderia existir uma requisição Ajax que retornasse algo,</span>
+    <span class="c1">//em vez disso, apenas declarei a variavel abaixo e atribuí um valor a ela</span>
+    <span class="kd">let</span> <span class="nx">dados</span> <span class="o">=</span> <span class="p">{</span><span class="na">nome</span><span class="p">:</span><span class="s2">"Luiz"</span><span class="p">,</span> <span class="na">idade</span><span class="p">:</span><span class="mi">42</span><span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">dados</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">updateView</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">getDados</span><span class="p">()</span>
+    <span class="c1">//Um código qualquer que atualiza a view com base</span>
+    <span class="c1">//nos dados obtidos na chamada de getDados</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">main</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">updateView</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="nx">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<figure>
+    <img data-large-image="2018-02-21-console-api-06.jpg" src="/images/2018-02-21-console-api-06.jpg" alt="Imagem do console do navegador" />
+</figure>
+
+<h2 id="testes-unitários-com-a-api-console">Testes unitários com a API Console</h2>
+<p>Aqui falaremos do método <em>console.assert</em>. É claro que esse método não descartará o uso de um <a target="_blank" href="https://mochajs.org/">Mocha</a> ou <a target="_blank" href="http://qunitjs.com/">Qunit</a>, mas já é alguma coisa.
+Esse método aceita dois parâmetro, o primeiro é a afirmação(assert) a ser avaliada, no segundo parâmetro podemos passar a mensagem que será apresentada caso a afirmação não seja verdadeira.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">somaDoisNumeros</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">assert</span><span class="p">(</span><span class="nx">somaDoisNumeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">===</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"A função contém erros"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<figure>
+    <img data-large-image="2018-02-21-console-api-07.jpg" src="/images/2018-02-21-console-api-07.jpg" alt="Imagem do console do navegador" />
+</figure>
+
+<p>Na linha 2, eu errei o sinal da operação propositalmente, em vez de um “+”, coloquei um “-”. Sendo assim o resultado da função chamada na linha 5 jamais será 10, portanto no console receberemos a mensagem fornecida no segundo parâmetro: “A função contém erros”.
+Experimente corrigir o sinal da operação e veja que o console não exibirá a mensagem de erro.</p>
+
+<h2 id="consoleclear">console.clear</h2>
+<p>Como o nome sugere, ele limpa o console, porém, considero muito mais prático digitar um ctrl + l.</p>
+
+<h2 id="formatação-de-texto-no-console">Formatação de texto no console</h2>
+<p>Desde que abri o console do navegador no facebook, fiquei curioso pra saber como eles conseguiam formatar o texto daquela forma, até o momento eu nem sabia que era possível fazer isso. Pois bem, veja como é possível no exemplo abaixo:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"%cUma mensagem estilizada"</span><span class="p">,</span> <span class="s2">"color: red; font-size: 60px"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>com o especificador de formato “%c” podemos inserir código css na nossa string. Veja o resultado:</p>
+
+<figure>
+    <img data-large-image="2018-02-21-console-api-08.jpg" src="/images/2018-02-21-console-api-08.jpg" alt="Imagem do console do navegador" />
+</figure>
+
+<p>A Console API possui outros métodos, mas escolhi apenas esses para que o artigo não ficasse grande demais, espero que tenham gostado.</p>
+
+        </article>
+        <footer class="redes-sociais-container">
+    <p><a class="rede-social github" target="_blank" href="https://github.com/maikenegreiros">GitHub</a></p>
+    <p><a class="rede-social facebook" target="_blank" href="https://www.facebook.com/maikenegreiros">Facebook</a></p>
+    <p><a class="rede-social twitter" target="_blank" href="https://twitter.com/maikenegreiros">Twitter</a></p>
+    <p><a class="rede-social linkedin" target="_blank" href="https://www.linkedin.com/in/maike-negreiros-3818ab14a/">Linkedin</a></p>
+    <p><a class="rede-social mail" target="_blank" href="mailto:maike_jbe@hotmail.com">E-mail</a></p>
+</footer>
+
+    </body>
+</html>

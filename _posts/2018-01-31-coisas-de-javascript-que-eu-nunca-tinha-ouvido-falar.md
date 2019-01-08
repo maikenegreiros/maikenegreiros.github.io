@@ -5,7 +5,7 @@ description: Nesse artigo você verá coisas que existem no JavaScript, mas que 
 keywords: javascript, html5, ecmascript, es6, es2015, indexeddb, banco de dados
 image: /images/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.png
 alt: 
-url: "https://maikenegreiros.me/artigos/coisas-de-js-que-eu-nunca-tinha-ouvido-falar"
+url: https://maikenegreiros.me/2018/01/31/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.html
 updateDate: "13/01/2018"
 ---
 
