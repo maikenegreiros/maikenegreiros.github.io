@@ -23,6 +23,7 @@
 
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/post.css">
+        <script src="/js/post-bundle.js"></script>
 
         <meta property="og:title" content="IndexedDB – seu banco de dados no client-side (Parte 2)" />
         <meta property="og:type" content="blog" />
@@ -77,7 +78,7 @@
 <span class="kd">let</span> <span class="nx">DB</span><span class="p">;</span>
 <span class="nx">openRequest</span><span class="p">.</span><span class="nx">onupgradeneeded</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">DB</span> <span class="o">=</span> <span class="nx">openRequest</span><span class="p">.</span><span class="nx">result</span>
-    <span class="nx">DB</span><span class="p">.</span><span class="nx">createObjectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">,</span> <span class="p">{</span><span class="na">autoIncrement</span><span class="p">:</span> <span class="kc">true</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/code&gt;</span><span class="se">)</span><span class="sr">&lt;/</span><span class="nx">li</span><span class="o">&gt;</span>
+    <span class="nx">DB</span><span class="p">.</span><span class="nx">createObjectStore</span><span class="p">(</span><span class="s2">"pessoas"</span><span class="p">,</span> <span class="p">{</span><span class="na">autoIncrement</span><span class="p">:</span> <span class="kc">true</span><span class="p">})</span>
 <span class="p">}</span>
 <span class="c1">//O código escrito até aqui é fruto do artigo anterior, uma única alteração foi feita, a variável  DB teve sua declaração realizada fora do escopo da callback, pois essa variável terá uma atribuição dentro da callback atrelada a onsuccess também.</span>
 

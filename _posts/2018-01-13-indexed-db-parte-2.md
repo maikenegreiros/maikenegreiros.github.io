@@ -24,7 +24,7 @@ let openRequest = window.indexedDB.open("MyDatabase", 1)
 let DB;
 openRequest.onupgradeneeded = () => {
     DB = openRequest.result
-    DB.createObjectStore("pessoas", {autoIncrement: true}</code>)</li>
+    DB.createObjectStore("pessoas", {autoIncrement: true})
 }
 //O código escrito até aqui é fruto do artigo anterior, uma única alteração foi feita, a variável  DB teve sua declaração realizada fora do escopo da callback, pois essa variável terá uma atribuição dentro da callback atrelada a onsuccess também.
 
