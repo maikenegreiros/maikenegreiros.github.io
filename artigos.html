@@ -10,7 +10,9 @@ title: Maike Negreiros - Artigos
     {% for post in site.posts %}
     <article class="posts-card card">
         <a class="post card-body card-link" href="{{ post.url }}">
-            <div class="card-image"></div>
+            <div class="card-image">
+                <img src="{{ post.image }}" alt="{{ post.alt }}">
+            </div>
             <div class="card-informations">
                 <h2 class="card-title">{{ post.title }}</h2>
                 <!-- <p class="card-text">{{ post.excerpt }}</p> -->

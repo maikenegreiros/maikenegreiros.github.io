@@ -9,3 +9,31 @@
 .posts-card {
     margin: 15px 0;
 }
+
+.post.card-body.card-link {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 700px) {
+        flex-direction: row;
+    }
+}
+
+.card-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.card-informations {
+    flex: 2;
+    margin-top: 20px;
+    @media (min-width: 700px) {
+        margin-left: 20px;
+        margin-top: 0;
+    }
+}
+
+.card-image img {
+    max-width: 100%;
+}
