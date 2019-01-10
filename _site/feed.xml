@@ -5,8 +5,8 @@
     <description>Falo sobre tecnologia e programação, principalmente JavaScript</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 10 Jan 2019 15:42:11 -0300</pubDate>
-    <lastBuildDate>Thu, 10 Jan 2019 15:42:11 -0300</lastBuildDate>
+    <pubDate>Thu, 10 Jan 2019 15:50:06 -0300</pubDate>
+    <lastBuildDate>Thu, 10 Jan 2019 15:50:06 -0300</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -811,8 +811,8 @@ Antes de irmos aos exemplos, irei inserir mais dois objetos utilizando o método
 &lt;p&gt;&lt;img src=&quot;/images/2018-01-11-indexeddb08.jpg&quot; alt=&quot;Ferramentas do desenvovedor - Chrome&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 13 Jan 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/artigos/indexed-db-parte-2</link>
-        <guid isPermaLink="true">http://localhost:4000/artigos/indexed-db-parte-2</guid>
+        <link>http://localhost:4000/artigos/indexeddb-parte2</link>
+        <guid isPermaLink="true">http://localhost:4000/artigos/indexeddb-parte2</guid>
         
         
         <category>artigos</category>
@@ -914,8 +914,8 @@ Vejamos como fica o nosso banco de dados:&lt;/p&gt;
 &lt;p&gt;Neste artigo, para não estender muito, foquei apenas na parte inicial do IndexedDB, no próximo, trabalharemos dentro da callback do evento onsuccess e aprenderemos como realizar as operções de CRUD, ou seja, veremos como inserir dados, bem como atualizar, obter e deletar os dados inseridos.&lt;/p&gt;
 </description>
         <pubDate>Wed, 20 Dec 2017 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/artigos/indexed-db-parte-1</link>
-        <guid isPermaLink="true">http://localhost:4000/artigos/indexed-db-parte-1</guid>
+        <link>http://localhost:4000/artigos/indexeddb-parte1</link>
+        <guid isPermaLink="true">http://localhost:4000/artigos/indexeddb-parte1</guid>
         
         
         <category>artigos</category>
