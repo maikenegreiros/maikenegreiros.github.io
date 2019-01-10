@@ -31,7 +31,29 @@
                 <img data-large-image="{{ page.image }}" src="{{ page.image }}" alt="{{ page.alt }}">
             </figure>
             {{ content }}
+
+            <style>
+                div#disqus_thread {
+                    max-width: 1000px;
+                    padding: 25px;
+                    margin: 20px auto;
+                    border-top: 1px solid #ccc;
+                }
+            </style>
+            <div id="disqus_thread"></div>
+            <script>        
+                (function() {
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://maike-negreiros.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+    
+            <noscript>Por favor ative o javascript para ver <a href="https://disqus.com/?ref_noscript">os comentários.</a></noscript>
         </article>
         {% include footer.html %}
+
+        <script id="dsq-count-scr" src="//maike-negreiros.disqus.com/count.js" async></script>
     </body>
 </html>
