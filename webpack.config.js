@@ -1,4 +1,5 @@
 const path = require('path');
+var OfflinePlugin = require('offline-plugin');
 
 module.exports = {
     watch: true,
@@ -23,6 +24,9 @@ module.exports = {
             }
         }]
     },
+    plugins: [
+        new OfflinePlugin()
+    ],
     resolve: {
         extensions: ['.json', '.js']
     }
