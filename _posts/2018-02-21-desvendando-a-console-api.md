@@ -7,6 +7,7 @@ image: /images/2018-02-21-desvendando-a-console-api.jpg
 alt: 
 url: "https://maikenegreiros.me/artigos/desvendando-a-console-api/"
 updateDate: "21/02/2018"
+categories: [artigos]
 ---
 
 Hoje o assunto é sobre uma ferramenta que todo desenvolvedor JavaScript conhece. Quem nunca usou um *console.log* no meio do código pra saber porque alguma função não funcionava conforme esperado?

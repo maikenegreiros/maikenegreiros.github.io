@@ -7,6 +7,7 @@ image: /images/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.png
 alt: 
 url: https://maikenegreiros.me/2018/01/31/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.html
 updateDate: "13/01/2018"
+categories: [artigos]
 ---
 
 O post de hoje é uma tradução de um artigo que vi uns dias atrás, de autoria do <a href="https://twitter.com/SkylloDev" target="_blank">Nick</a>, e achei muito legal, por isso achei que seria interessante compartilhá-lo com vocês aqui no blog. Pra quem deita e rola no inglês, pode conferir o artigo original <a href="http://air.ghost.io/js-things-i-never-knew-existed/amp/?__twitter_impression=true" target="_blank">aqui</a>.

@@ -7,6 +7,7 @@ image: /images/2017-12-28-indexeddb-logo.jpg
 alt: Logo HTML5 com o nome IndexedDB em seguida
 url: "https://maikenegreiros.me/artigos/indexeddb-parte2"
 updateDate: "13/01/2018"
+categories: [artigos]
 ---
 
 Esse artigo é uma continuação de um artigo anterior, recomendo que leiam primeiro o [IndexedDB – parte 1](/2017/12/20/indexed-db-parte-1.html). No artigo passado falei como criar e deletar as *objectStores*, e vimos que essas operações eram feitas dentro da callback atrelada ao evento *onupgradeneeded*.

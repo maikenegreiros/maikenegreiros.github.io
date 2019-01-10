@@ -7,6 +7,7 @@ image: /images/2018-04-13-battery-status-api.jpg
 alt:
 url:
 updateDate: 13/04/2018
+categories: [artigos]
 ---
 
 Esse é o primeiro artigo de uma série onde apresentarei algumas APIs capazes de acessar o hardware do dispositivo do usuário.

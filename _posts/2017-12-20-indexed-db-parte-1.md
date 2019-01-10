@@ -7,6 +7,7 @@ image: /images/2017-12-28-indexeddb-logo.jpg
 alt: Logo HTML5 com o nome IndexedDB em seguida
 url: "https://maikenegreiros.me/artigos/indexeddb-parte1"
 updateDate: "20/12/2017"
+categories: [artigos]
 ---
 
 Há pouco tempo atrás, quando se falava em armazenamento de dados no lado do cliente, a única coisa que nos vinha a cabeça eram os cookies. O HTML 5 nos trouxe mais algumas possibilidades para desempenhar esse papel, das quais podemos citar *Web Storage* e *IndexedDB*. Existe também o *Web SQL*, porém, esta tecnologia foi descontinuada, cedendo espaço para o IndexedDB, que é o assunto desse artigo.

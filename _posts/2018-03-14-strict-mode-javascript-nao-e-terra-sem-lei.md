@@ -7,6 +7,7 @@ image: /images/strict-mode-javascript-nao-e-terra-sem-lei.jpg
 alt:
 url:
 updateDate: "14/03/2018"
+categories: [artigos]
 ---
 
 O strict mode foi inserido no Ecmascript 5 e age dizendo ao browser para interpretar o código JavaScript de forma mais rigorosa (strict), lançando erros que em modo normal são silenciados. Isso aumenta a qualidade do código e nos previne de bugs futuros.

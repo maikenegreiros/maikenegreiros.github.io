@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</description>
+    <title>Maike Negreiros</title>
+    <description>Falo sobre tecnologia e programação, principalmente JavaScript</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 10 Jan 2019 15:08:54 -0300</pubDate>
-    <lastBuildDate>Thu, 10 Jan 2019 15:08:54 -0300</lastBuildDate>
+    <pubDate>Thu, 10 Jan 2019 15:42:11 -0300</pubDate>
+    <lastBuildDate>Thu, 10 Jan 2019 15:42:11 -0300</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -62,9 +61,11 @@
 &lt;/p&gt;
 </description>
         <pubDate>Fri, 13 Apr 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/2018/04/13/acessando-hardware-do-dispositivo-com-javascript-parte-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/04/13/acessando-hardware-do-dispositivo-com-javascript-parte-1.html</guid>
+        <link>http://localhost:4000/artigos/acessando-hardware-do-dispositivo-com-javascript-parte-1</link>
+        <guid isPermaLink="true">http://localhost:4000/artigos/acessando-hardware-do-dispositivo-com-javascript-parte-1</guid>
         
+        
+        <category>artigos</category>
         
       </item>
     
@@ -152,9 +153,11 @@
 
 </description>
         <pubDate>Wed, 14 Mar 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/2018/03/14/strict-mode-javascript-nao-e-terra-sem-lei.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/03/14/strict-mode-javascript-nao-e-terra-sem-lei.html</guid>
+        <link>http://localhost:4000/artigos/strict-mode-javascript-nao-e-terra-sem-lei</link>
+        <guid isPermaLink="true">http://localhost:4000/artigos/strict-mode-javascript-nao-e-terra-sem-lei</guid>
         
+        
+        <category>artigos</category>
         
       </item>
     
@@ -317,9 +320,11 @@ Experimente corrigir o sinal da operação e veja que o console não exibirá a 
 &lt;p&gt;A Console API possui outros métodos, mas escolhi apenas esses para que o artigo não ficasse grande demais, espero que tenham gostado.&lt;/p&gt;
 </description>
         <pubDate>Wed, 21 Feb 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/2018/02/21/desvendando-a-console-api.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/02/21/desvendando-a-console-api.html</guid>
+        <link>http://localhost:4000/artigos/desvendando-a-console-api</link>
+        <guid isPermaLink="true">http://localhost:4000/artigos/desvendando-a-console-api</guid>
         
+        
+        <category>artigos</category>
         
       </item>
     
@@ -567,9 +572,11 @@ Eu gosto bastante disso em outras linguagens, como Java. Eu sinto que elas serã
 Feliz 2018!&lt;/p&gt;
 </description>
         <pubDate>Wed, 31 Jan 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/2018/01/31/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/01/31/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar.html</guid>
+        <link>http://localhost:4000/artigos/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar</link>
+        <guid isPermaLink="true">http://localhost:4000/artigos/coisas-de-javascript-que-eu-nunca-tinha-ouvido-falar</guid>
         
+        
+        <category>artigos</category>
         
       </item>
     
@@ -804,9 +811,11 @@ Antes de irmos aos exemplos, irei inserir mais dois objetos utilizando o método
 &lt;p&gt;&lt;img src=&quot;/images/2018-01-11-indexeddb08.jpg&quot; alt=&quot;Ferramentas do desenvovedor - Chrome&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 13 Jan 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/2018/01/13/indexed-db-parte-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/01/13/indexed-db-parte-2.html</guid>
+        <link>http://localhost:4000/artigos/indexed-db-parte-2</link>
+        <guid isPermaLink="true">http://localhost:4000/artigos/indexed-db-parte-2</guid>
         
+        
+        <category>artigos</category>
         
       </item>
     
@@ -905,9 +914,11 @@ Vejamos como fica o nosso banco de dados:&lt;/p&gt;
 &lt;p&gt;Neste artigo, para não estender muito, foquei apenas na parte inicial do IndexedDB, no próximo, trabalharemos dentro da callback do evento onsuccess e aprenderemos como realizar as operções de CRUD, ou seja, veremos como inserir dados, bem como atualizar, obter e deletar os dados inseridos.&lt;/p&gt;
 </description>
         <pubDate>Wed, 20 Dec 2017 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/2017/12/20/indexed-db-parte-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/12/20/indexed-db-parte-1.html</guid>
+        <link>http://localhost:4000/artigos/indexed-db-parte-1</link>
+        <guid isPermaLink="true">http://localhost:4000/artigos/indexed-db-parte-1</guid>
         
+        
+        <category>artigos</category>
         
       </item>
     
