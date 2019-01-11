@@ -1,6 +1,7 @@
-const CACHE_NAME = 'maike_negreiros-v1';
+const CACHE_NAME = 'maike_negreiros-v2';
 const paths = [
     '/',
+    'https://fonts.googleapis.com/css?family=Bungee',
     '/css/home.css',
     '/images/maikenegreiros.jpg',
     '/images/003-github.png',
