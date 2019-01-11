@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cache-maike_negreiros-v3';
+const CACHE_NAME = 'cache-maike_negreiros-v16';
 const paths = [
     '/',
     '/css/home.css',
@@ -10,16 +10,18 @@ const paths = [
     '/images/002-mail.png'
 ];
 
-self.addEventListener('install', e => {
-    e.waitUntil(
+self.addEventListener('install', event => {
+    event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(paths))
+        .then(cache => cache.addAll(paths))
+        .catch(error => console.log("Erro ao instalar SW", error))
     )
 });
 
 self.addEventListener('activate', e => {
     e.waitUntil(
-        caches.keys().then(function (keys) {
+        caches.keys()
+        .then(function (keys) {
             return Promise.all(keys
                 .filter(function (key) {
                     return key.indexOf(CACHE_NAME) !== 0;
@@ -35,11 +37,11 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
     e.respondWith(
         caches.match(e.request)
-            .then(response => {
-                if (response) {
-                    return response;
-                }
-                return fetch(e.request);
-            })
+        .then(response => {
+            if (response) {
+                return response;
+            }
+            return fetch(e.request.clone())
+        })
     )
 });
