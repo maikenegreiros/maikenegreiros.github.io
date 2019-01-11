@@ -1,4 +1,4 @@
-const CACHE_NAME = 'maike_negreiros-v1';
+const CACHE_NAME = 'maike_negreiros-v3';
 const paths = [
     '/',
     '/css/home.css',
